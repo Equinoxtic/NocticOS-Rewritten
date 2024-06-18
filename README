@@ -1,0 +1,7 @@
+# NocticOS: Rewritten
+
+* A rewrite of a previous project that I made called NocticOS, which was initially written in C#. This rewrite now uses the Haxe language and is able to compile into native C++ code.
+
+- Resources:
+* NocticOS (Original Repository): https://github.com/Equinoxtic/NocticOS.git
+* The Haxe Programming Language: https://haxe.org/
