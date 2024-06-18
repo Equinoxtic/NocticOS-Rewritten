@@ -1,0 +1,10 @@
+# GITIGNORE CONFIGURATIONS
+
+# Bin / executable folders
+
+[Bb]in/
+[Bb]in/include/
+[Bb]in/obj/
+[Bb]in/src/
+
+#

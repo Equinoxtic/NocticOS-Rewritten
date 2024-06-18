@@ -1,0 +1,5 @@
+--class-path source
+--main Main
+-D analyzer-optimize
+-D HXCPP-DEBUG
+--cpp bin/NocticOS
