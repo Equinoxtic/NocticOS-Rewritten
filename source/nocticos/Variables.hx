@@ -1,5 +1,7 @@
 package nocticos;
 
+import nocticos.lib.HTTP;
+
 class Variables
 {
 	public static final APPLICATION_TITLE = "NocticOS: Rewritten";
@@ -8,7 +10,7 @@ class Variables
 
 	public static final VERSION:String = FileIO.readFile(Paths.file('.VERSION'));
 
-	public static final GIT_VERSION:String = FileIO.readFile(Paths.getAsset('.GIT_VERSION', ''));
+	public static final GIT_VERSION:String = HTTP.getStringFromURL('https://raw.githubusercontent.com/Equinoxtic/NocticOS-Rewritten/master/.GIT_VERSION');
 
 	public static final PROMPT_STRING:String = "[ Yes (Y) / No (N) ]";
 
