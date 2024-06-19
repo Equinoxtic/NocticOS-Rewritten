@@ -8,6 +8,8 @@ class Variables
 
 	public static final VERSION:String = FileIO.readFile(Paths.file('.VERSION'));
 
+	public static final GIT_VERSION:String = FileIO.readFile(Paths.getAsset('.GIT_VERSION', ''));
+
 	public static final PROMPT_STRING:String = "[ Yes (Y) / No (N) ]";
 
 	/**
