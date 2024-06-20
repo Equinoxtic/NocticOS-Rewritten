@@ -1,11 +1,11 @@
-package nocticos.input;
+package nocticos.ui;
 
 import backend.System;
 import nocticos.commands.Exit;
 import nocticos.commands.Help;
 import nocticos.lib.command.Command;
 
-class CommandParser {
+class CommandCalls {
 	public static function parseCommand(baseCommand:String, flags:Array<String>):Void {
 		switch(baseCommand) {
 			case "help" | "cmds":
@@ -14,7 +14,7 @@ class CommandParser {
 			case "exit" | "quit" | "q":
 				Command.insantiateCommand(new Exit(flags));
 
-			case "reload" | "rbuf" | "refbuf":
+			case "reload" | "refresh" | "rbuf" | "refbuf":
 				System._CLRSCR();
 				Instance.instantiate(new nocticos.ui.MainScreen());
 

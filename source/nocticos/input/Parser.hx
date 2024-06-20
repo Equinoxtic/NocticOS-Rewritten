@@ -1,13 +1,14 @@
 package nocticos.input;
 
-import nocticos.input.CommandParser.CommandParser;
+import nocticos.ui.CommandCalls;
 
 class Parser {
 	public static var currentCommand:String = "";
 
 	public static function parseCommandInput(commandString:Null<String>):Void {
-		if (commandString == null || commandString.length <= 0)
+		if (commandString == null || commandString.length <= 0) {
 			return;
+		}
 
 		var split:Array<String> = commandString.split(' ');
 		var flags:Array<String> = [];
@@ -28,6 +29,6 @@ class Parser {
 
 		currentCommand = sCmd;
 
-		CommandParser.parseCommand(sCmd, flags);
+		CommandCalls.parseCommand(sCmd, flags);
 	}
 }
