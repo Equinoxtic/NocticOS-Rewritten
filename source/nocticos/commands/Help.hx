@@ -1,5 +1,6 @@
 package nocticos.commands;
 
+import nocticos.ui.display.TypedCommandText;
 import backend.System;
 import nocticos.ui.display.text.Text.TextColor;
 import backend.ANSI;
@@ -37,46 +38,17 @@ class Help extends BaseCommand
 
 		var showAll:Bool = (flags[1] == '-a' || flags[1] == '--all');
 
-		var text:String = "";
-		for (i in 0...Command._commandsList.length) {
+		for (i in 0...Command.commandsList.length) {
 			if (showAll) {
-				text += pushCommandGuide(
-					Command._commandsList[i][0],
-					Command._commandsList[i][1],
-					Command._commandsList[i][2],
-					Command._commandsList[i][3]
+				new TypedCommandText(
+					Command.getCommandName(i),
+					Command.getCommandAliases(i),
+					Command.getCommandFlags(i),
+					Command.getCommandDescription(i)
 				);
 			} else {
-				text += pushCommandGuide(Command._commandsList[i][0], null, null, Command._commandsList[i][3]);
+				new TypedCommandText(Command.commandsList[i][0], null, null, Command.commandsList[i][3]);
 			}
 		}
-
-		new TypedText(text, DEFAULT_FAST);
-	}
-
-	private function pushCommandGuide(name:String, ?aliasList:Null<String> = "", ?flagsList:Null<String>, ?description:Null<String> = ""):String
-	{
-		var commandString:String = "";
-
-		commandString += '* [ $name ] '; /* + ((aliasList != null && aliasList != '') ? ' // ( Aliases: $aliasList )' : '' ) */
-
-		if (aliasList != null && aliasList != '') {
-			commandString += ' // ( Aliases: $aliasList )';
-		}
-
-		if (flagsList != null && flagsList != '') {
-			commandString += ' < $flagsList > ';
-		}
-
-		commandString += "\n";
-
-		var newDescription:String = "Command description.";
-		if (description != null && description != "") {
-			newDescription = description;
-		}
-
-		commandString += '  > \"$newDescription\"\n\n';
-
-		return commandString;
 	}
 }

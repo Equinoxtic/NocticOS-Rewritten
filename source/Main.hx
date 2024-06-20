@@ -1,4 +1,4 @@
-import nocticos.lib.command.CommandListParser;
+import nocticos.lib.command.CommandUtility;
 import nocticos.util.Thread;
 import backend.System;
 import nocticos.Variables;
@@ -10,7 +10,7 @@ class Main {
 	public static function main():Void {
 		// Push and initialize commandsList.
 		for (i in 0...Variables.commandsList.length) {
-			CommandListParser.pushCommand(
+			CommandUtility.pushCommand(
 				Variables.commandsList[i][0],
 				Variables.commandsList[i][1],
 				Variables.commandsList[i][2],
