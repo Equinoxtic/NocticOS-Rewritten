@@ -17,7 +17,7 @@ class BaseCommand {
 
 	public function _handle():Void {
 		#if (debug)
-		Sys.stdout().writeString("\n\nCreated command instance\n\n")
+		Sys.stdout().writeString("\n\nCreated command instance\n\n");
 		#end
 	}
 }
