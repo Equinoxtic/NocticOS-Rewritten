@@ -29,15 +29,15 @@ class Error {
 
 		if (tMessage != null) {
 			if (newline) {
-				Sys.stdout().writeString("\n\n");
+				Sys.print("\n\n");
 			}
 
-			Sys.stdout().writeString(((color) ? ANSI.set(Red, Bold) : ANSI.set(Off)) + tMessage);
+			Sys.print(((color) ? ANSI.set(Red, Bold) : ANSI.set(Off)) + tMessage);
 
-			Sys.stdout().writeString(ANSI.set(Off));
+			Sys.print(ANSI.set(Off));
 
 			if (newline) {
-				Sys.stdout().writeString("\n\n");
+				Sys.print("\n\n");
 			}
 		}
 	}

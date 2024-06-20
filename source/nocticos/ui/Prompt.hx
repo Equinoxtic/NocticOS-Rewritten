@@ -18,11 +18,9 @@ class Prompt {
 		if (promptType == null) {
 			return;
 		}
-
 		if (newline) {
-			Sys.stdout().writeString('\n\n');
+			Sys.print('\n\n');
 		}
-
 		switch(promptType) {
 			case DEFAULT:
 				new TypedText(promptString, DEFAULT);

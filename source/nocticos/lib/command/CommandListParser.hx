@@ -25,7 +25,7 @@ class CommandListParser {
 		sbuf += "[PUSHED COMMAND] > " + name + " : " + '[${_appendArray(aliases)}] : [${_appendArray(flags)}] - \"${description}\"';
 
 		if (sbuf != null) {
-			Sys.stdout().writeString('$sbuf\n');
+			Sys.print('$sbuf\n');
 		}
 
 		return;

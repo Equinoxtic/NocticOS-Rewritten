@@ -11,7 +11,7 @@ class Instance {
 	 * Create a new NocticOS Instance.
 	 */
 	public function new():Void {
-		Sys.stdout().writeString(ANSI.title(Variables.APPLICATION_TITLE));
+		Sys.print(ANSI.title(Variables.APPLICATION_TITLE));
 	}
 
 	/**

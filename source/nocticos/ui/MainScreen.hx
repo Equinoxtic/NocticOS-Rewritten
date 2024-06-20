@@ -9,10 +9,10 @@ using StringTools;
 class MainScreen extends Instance {
 	override function create():Void {
 		new TypedText('[ ${Variables.APPLICATION_TITLE} - v${Variables.VERSION} ]', DEFAULT, BLUE);
-		Sys.stdout().writeString("\n\n");
+		Sys.print("\n\n");
 		new TypedText('> Welcome to ${Variables.GLOBAL_APPLICATION_NAME} (${Variables.VERSION}). Type in \'help\' to\nget started.\n\n', DEFAULT, WHITE);
 		do {
-			Sys.stdout().writeString('${Variables.COMMAND_LINE_PROMPT} ');
+			Sys.print('${Variables.COMMAND_LINE_PROMPT} ');
 			new Input(null);
 		} while (true);
 		super.create();
