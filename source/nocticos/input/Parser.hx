@@ -21,6 +21,14 @@ class Parser {
 
 		var sCmd = flags[0];
 
+		#if (debug)
+		for (flag in 0...flags.length) {
+			if (flags[flag+1] != null) {
+				Sys.stdout().writeString('${sCmd} flag: ${flags[flag+1]}\n');
+			}
+		}
+		#end
+
 		currentCommand = sCmd;
 
 		CommandCalls.parseCommand(sCmd, flags);
