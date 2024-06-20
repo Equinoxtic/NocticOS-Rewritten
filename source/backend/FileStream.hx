@@ -61,8 +61,10 @@ class FileStream extends File {
 				switch(writeMode) {
 					case STRING:
 						file.writeString(s);
-					case BYTES | INT:
+					case BYTES:
 						file.writeByte(Std.parseInt(s));
+					case INT:
+						file.writeInt32(Std.parseInt(s));
 					case FLOAT:
 						file.writeFloat(Std.parseFloat(s));
 					case DOUBLE:
