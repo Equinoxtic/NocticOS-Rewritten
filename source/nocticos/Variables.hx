@@ -45,10 +45,10 @@ class Variables
 	 *		// The name of the command. Must be a string.
 	 *		"COMMAND_NAME",
 	 *
-	 *		// The aliases for the command. Must be separated by a "|" (i.e. "alias 1 | alias 2")
+	 *		// The array of aliases for the command. Type in ``[]`` for no aliases.
 	 *		"COMMAND_ALIASES",
 	 *
-	 *		// The flags for the command. Must be separated by a "," (i.e. "flag 1, flag 2")
+	 *		// The array of flags for the command. Type in ``[]`` for no flags.
 	 *		"COMMAND_FLAGS",
 	 *
 	 *		// The description of the command. Must be a string.
@@ -59,29 +59,29 @@ class Variables
 	public static final commandsList:Array<Dynamic> = [
 		[
 			"help",
-			"cmds",
-			"--all, -a",
-			"Shows the list of available commands and their usage."
+			["cmds"],
+			["--all", "-a"],
+			'Shows the list of available commands for ${Variables.GLOBAL_APPLICATION_NAME}'
 		],
 
 		[
 			"clear",
-			"clr | cls | clrscr",
-			"",
+			["clr", "cls", "clrscr"],
+			[""],
 			"Clears the current screen buffer."
 		],
 
 		[
-			"refresh",
-			"reload | rbuf | refbuf",
-			"",
+			"reload",
+			["refresh", "rbuf", "refbuf"],
+			[""],
 			"Refreshes / reloads the buffer."
 		],
 
 		[
 			"exit",
-			"quit [q]",
-			"",
+			["quit", "q"],
+			[""],
 			'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.'
 		],
 	];

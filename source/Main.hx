@@ -1,3 +1,4 @@
+import nocticos.lib.command.CommandListParser;
 import nocticos.util.Thread;
 import backend.System;
 import nocticos.Variables;
@@ -9,22 +10,16 @@ class Main {
 	public static function main():Void {
 		// Push and initialize commandsList.
 		for (i in 0...Variables.commandsList.length) {
-			Command._commandsList.push([
+			CommandListParser.pushCommand(
 				Variables.commandsList[i][0],
 				Variables.commandsList[i][1],
 				Variables.commandsList[i][2],
-				Variables.commandsList[i][3]
-			]);
-
-			Sys.stdout().writeString(
-				'(${i + 1}): [PUSHED COMMAND] > ${Variables.commandsList[i][0]} '
-				+ ':'
-				+ ' [${Variables.commandsList[i][1]}] : [${Variables.commandsList[i][2]}]'
-				+ '-'
-				+ ' \"${Variables.commandsList[i][3]}\"\n');
+				Variables.commandsList[i][3],
+				i+1
+			);
 		}
 
-		Thread.sleepMS(150);
+		Thread.sleep(0.025);
 		System._CLRSCR();
 
 		// Instantiate the MainScreen class.
