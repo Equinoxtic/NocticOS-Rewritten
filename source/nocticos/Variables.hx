@@ -1,5 +1,6 @@
 package nocticos;
 
+import backend.FileStream;
 import nocticos.lib.HTTP;
 
 class Variables
@@ -17,7 +18,7 @@ class Variables
 	/**
 	 * The version of the application.
 	 */
-	public static final VERSION:String = FileIO.readFile(Paths.file('.VERSION'));
+	public static final VERSION:String = FileStream.readFile(Paths.file('.VERSION'));
 
 	/**
 	 * The GIT version of the application. (Typically on GitHub)
