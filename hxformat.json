@@ -1,0 +1,9 @@
+{
+	"disableFormatting": false,
+
+	"indentation": {
+		"tabWidth": 4,
+		"trailingWhitespace": false,
+		"character": "tab"
+	}
+}
