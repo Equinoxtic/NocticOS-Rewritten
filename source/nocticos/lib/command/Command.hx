@@ -1,10 +1,26 @@
 package nocticos.lib.command;
 
 class Command {
-	public static var _commandsList:Array<Dynamic> = [];
+	public static var commandsList:Array<Dynamic> = [];
 
 	public static function insantiateCommand(commandInstance:BaseCommand):Void {
 		commandInstance._handle();
+	}
+
+	public static function getCommandName(?index:Int = 0):String {
+		return commandsList[index][0];
+	}
+
+	public static function getCommandAliases(?index:Int = 0):Array<String> {
+		return commandsList[index][1].split('|').trim();
+	}
+
+	public static function getCommandFlags(?index:Int = 0):Array<String> {
+		return commandsList[index][2].split(',').trim();
+	}
+
+	public static function getCommandDescription(?index:Int = 0):String {
+		return commandsList[index][3];
 	}
 }
 
