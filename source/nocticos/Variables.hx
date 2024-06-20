@@ -67,21 +67,21 @@ class Variables
 		[
 			"clear",
 			["clr", "cls", "clrscr"],
-			[""],
+			[],
 			"Clears the current screen buffer."
 		],
 
 		[
 			"reload",
 			["refresh", "rbuf", "refbuf"],
-			[""],
+			[],
 			"Refreshes / reloads the buffer."
 		],
 
 		[
 			"exit",
 			["quit", "q"],
-			[""],
+			[],
 			'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.'
 		],
 	];
