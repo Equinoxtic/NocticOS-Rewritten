@@ -9,14 +9,12 @@ class Main {
 	public static function main():Void {
 		// Push and initialize commandsList.
 		for (i in 0...Variables.commandsList.length) {
-			Command._commandsList.push(
-				[
-					Variables.commandsList[i][0],
-					Variables.commandsList[i][1],
-					Variables.commandsList[i][2],
-					Variables.commandsList[i][3]
-				]
-			);
+			Command._commandsList.push([
+				Variables.commandsList[i][0],
+				Variables.commandsList[i][1],
+				Variables.commandsList[i][2],
+				Variables.commandsList[i][3]
+			]);
 
 			Sys.stdout().writeString(
 				'(${i + 1}): [PUSHED COMMAND] > ${Variables.commandsList[i][0]} '
