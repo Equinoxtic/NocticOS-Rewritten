@@ -45,10 +45,10 @@ class Variables
 	 *		// The name of the command. Must be a string.
 	 *		"COMMAND_NAME",
 	 *
-	 *		// The array of aliases for the command. Type in ``[]`` for no aliases.
+	 *		// The array of aliases for the command. Type in ``[""]`` for no aliases.
 	 *		"COMMAND_ALIASES",
 	 *
-	 *		// The array of flags for the command. Type in ``[]`` for no flags.
+	 *		// The array of flags for the command. Type in ``[""]`` for no flags.
 	 *		"COMMAND_FLAGS",
 	 *
 	 *		// The description of the command. Must be a string.
@@ -67,21 +67,21 @@ class Variables
 		[
 			"clear",
 			["clr", "cls", "clrscr"],
-			[],
+			[""],
 			"Clears the current screen buffer."
 		],
 
 		[
 			"reload",
 			["refresh", "rbuf", "refbuf"],
-			[],
+			[""],
 			"Refreshes / reloads the buffer."
 		],
 
 		[
 			"exit",
 			["quit", "q"],
-			[],
+			[""],
 			'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.'
 		],
 	];
