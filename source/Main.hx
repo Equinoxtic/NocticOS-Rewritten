@@ -1,8 +1,7 @@
-import nocticos.lib.command.CommandUtility;
+import nocticos.util.CommandUtility;
 import nocticos.util.Thread;
 import backend.System;
 import nocticos.Variables;
-import nocticos.lib.command.Command;
 import backend.Instance;
 import nocticos.ui.MainScreen;
 

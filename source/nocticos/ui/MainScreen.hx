@@ -1,5 +1,6 @@
 package nocticos.ui;
 
+import nocticos.ui.command.Command;
 import nocticos.input.Input;
 import nocticos.ui.display.text.TypedText;
 import backend.Instance;

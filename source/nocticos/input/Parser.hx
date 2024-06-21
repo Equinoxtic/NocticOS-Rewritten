@@ -1,6 +1,6 @@
 package nocticos.input;
 
-import nocticos.ui.CommandCalls;
+import nocticos.ui.command.CommandCalls;
 
 class Parser {
 	public static var currentCommand:String = "";

@@ -1,7 +1,7 @@
 package nocticos.commands;
 
+import nocticos.ui.command.Command.BaseCommand;
 import backend.System;
-import nocticos.lib.command.Command.BaseCommand;
 
 class Exit extends BaseCommand {
 	public function new(flags:Array<String>):Void {

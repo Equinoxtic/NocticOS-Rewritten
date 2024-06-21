@@ -1,6 +1,7 @@
-package nocticos.lib.command;
+package nocticos.util;
 
 import nocticos.util.debug.Error;
+import nocticos.ui.command.Command;
 
 class CommandUtility {
 	public static function pushCommand(name:Null<String>, aliases:Null<Array<String>>, flags:Null<Array<String>>, description:Null<String>, ?id:Null<Int> = null):Void {

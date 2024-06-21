@@ -1,7 +1,7 @@
 package nocticos.ui.display;
 
 import nocticos.ui.display.text.TypedText;
-import nocticos.lib.command.CommandUtility;
+import nocticos.util.CommandUtility;
 
 using StringTools;
 

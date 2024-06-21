@@ -1,9 +1,9 @@
-package nocticos.ui;
+package nocticos.ui.command;
 
 import backend.System;
 import nocticos.commands.Exit;
 import nocticos.commands.Help;
-import nocticos.lib.command.Command;
+import nocticos.ui.command.Command;
 
 class CommandCalls {
 	public static function parseCommand(baseCommand:String, flags:Array<String>):Void {
