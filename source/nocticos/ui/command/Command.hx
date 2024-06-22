@@ -34,10 +34,6 @@ class Command {
 }
 
 class BaseCommand {
-	public var name:String = "Command";
-	public var alias:String = "cmd";
-	public var flagList:Array<String> = [];
-
 	public function new(flags:Array<String>):Void {}
 
 	public function _handle():Void {
