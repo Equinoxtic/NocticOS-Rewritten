@@ -5,57 +5,67 @@ using StringTools;
 enum WriteMode {
 	WRITE;
 	APPEND;
-	READ;
 }
 
 class StringBuffer {
-	private var _stringContent:String = '';
+	private var _stringContent:Array<String> = [];
 
 	public function new():Void {
-		this._stringContent = '';
+		this._stringContent.push(""); // Push an empty string first
 	}
 
-	public function writeString(string:Null<String>, ?mode:Null<WriteMode>):Void {
-		if (s != null) {
-			_stringContent.push(string)
-		} else {
-			return;
+	public function write(string:Null<String>, ?mode:Null<WriteMode> = WRITE):Void {
+		if (string != null) {
+			_contentWrite(string, mode);
 		}
 	}
 
-	private function _contentWrite(c:Null<String>, writeMode:Null<WriteMode>):Void {
-		if (writeMode != null) {
-			switch(writeMode) {
-				case WRITE:
-					_stringContent = c;
-				case APPEND:
-					_stringContent += c;
-				case READ:
-					var osc:String = _stringContent;
-					_stringContent = _contentRead();
-			}
+	public function out():Void {
+		if (this._stringContent.length != null) {
+			Sys.print(_getStringContent(this));
 		}
 	}
 
-	private _contentRead():String {
-		return _stringContent;
+	public function read():String {
+		if (this._stringContent.length != null) {
+			return _getStringContent(this);
+		}
+		return "";
 	}
 
-	public function quotifyString(string:Null<String>):String {
-		if (s != null) {
-			return '${\"string\"}';
+	public static function quotifyString(string:Null<String>):String {
+		if (string != null) {
+			return '\"${string}\"';
 		}
 		return "";
 	}
 
 	public function compare(a:StringBuffer, b:StringBuffer):Bool {
-		var BUFFER_A:String = "" ; var BUFFER_B:String = "";
-		for (i in 0...a._stringContent.length) {
-			BUFFER_A = a._stringContent[i].trim();
+		return (_getStringContent(a) == _getStringContent(b));
+	}
+
+	private function _contentWrite(c:Null<String>, writeMode:Null<WriteMode>):Void {
+		if (c == null) {
+			return;
 		}
-		for (i in 0...b._stringContent.length) {
-			BUFFER_B = b._stringContent[i].trim();
+		if (writeMode != null) {
+			switch(writeMode) {
+				case WRITE:
+					this._stringContent[0] = c;
+				case APPEND:
+					this._stringContent.push(c);
+			}
 		}
-		return (BUFFER_A == BUFFER_B);
+	}
+
+	private function _getStringContent(sbuf:StringBuffer):String {
+		if (sbuf == null) {
+			return "";
+		}
+		var buf:String = "";
+		for (i in 0...sbuf._stringContent.length) {
+			buf += sbuf._stringContent[i];
+		}
+		return buf;
 	}
 }
