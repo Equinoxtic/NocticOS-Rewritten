@@ -47,4 +47,15 @@ class StringBuffer {
 		}
 		return "";
 	}
+
+	public function compare(a:StringBuffer, b:StringBuffer):Bool {
+		var BUFFER_A:String = "" ; var BUFFER_B:String = "";
+		for (i in 0...a._stringContent.length) {
+			BUFFER_A = a._stringContent[i].trim();
+		}
+		for (i in 0...b._stringContent.length) {
+			BUFFER_B = b._stringContent[i].trim();
+		}
+		return (BUFFER_A == BUFFER_B);
+	}
 }
