@@ -13,9 +13,6 @@ class Exit extends BaseCommand {
 		if (Command.commandsList != null) {
 			Command.commandsList.pop();
 		}
-		#if (debug)
-		Sys.print("Clearing data...");
-		#end
 		System._EXIT(0);
 	}
 }

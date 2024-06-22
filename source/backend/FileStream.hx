@@ -46,11 +46,6 @@ class FileStream extends File {
 		if (path == null || path == "") {
 			return;
 		}
-
-		#if (debug)
-		trace('\n\nReading path: $path\n\n');
-		#end
-
 		if (FileSystem.exists(path)) {
 			var file:FileOutput = File.write(path, false);
 			if (file != null) {
@@ -72,17 +67,11 @@ class FileStream extends File {
 			}
 			file.close();
 		}
-
 		return;
 	}
 
 	public static function readFile(path:String):String {
 		var line:String = "";
-
-		#if debug
-		trace('\n\nReading path: $path\n\n');
-		#end
-
 		if (FileSystem.exists(path) && path != "" && path != null) {
 			var file:FileInput = File.read(path, false);
 			if (file != null) {
@@ -92,7 +81,6 @@ class FileStream extends File {
 		} else {
 			Error.throwError(NO_PATH_EXISTS, 'Path does not exist! [$path]', true, true);
 		}
-
 		return line;
 	}
 }

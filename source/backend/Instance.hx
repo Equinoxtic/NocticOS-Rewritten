@@ -21,9 +21,6 @@ class Instance {
 	 * @param emptyPrompt Whether the prompt displays empty text.
 	 */
 	public static function instantiate(instanceClass:Instance, ?hasPrompt:Bool = false, ?emptyPrompt:Bool = true):Void {
-		#if (debug)
-		Sys.print('\n\nRunning NocticOS Instance: ${instanceClass}\n\n');
-		#end
 		instanceClass._run(hasPrompt, emptyPrompt);
 	}
 
@@ -42,9 +39,5 @@ class Instance {
 	 *
 	 * Above ``super.create()`` is the initial state of the code while the post state is below ``super.create()``.
 	 */
-	public function create():Void {
-		#if debug
-		Sys.print("\n\nCreated NocticOS Instance\n\n");
-		#end
-	}
+	public function create():Void {}
 }
