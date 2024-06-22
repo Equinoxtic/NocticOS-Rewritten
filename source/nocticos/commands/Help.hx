@@ -2,9 +2,6 @@ package nocticos.commands;
 
 import nocticos.ui.display.TypedCommandText;
 import backend.System;
-import nocticos.ui.display.text.Text.TextColor;
-import backend.ANSI;
-import backend.ANSI.Attribute;
 import nocticos.ui.display.text.TypedText;
 import nocticos.ui.command.Command;
 import nocticos.ui.command.Command.BaseCommand;
