@@ -7,6 +7,7 @@ import nocticos.ui.display.text.effects.TypeEffect;
 enum TextType {
 	DEFAULT;
 	DEFAULT_FAST;
+	QUICK;
 	PROMPT;
 	INSTANT;
 	INSTANT_PROMPT;
@@ -29,6 +30,9 @@ class TypedText extends Text {
 				case DEFAULT_FAST:
 					TypeEffect.type(content, 5);
 
+				case QUICK:
+					TypeEffect.type(content, 1);
+
 				case PROMPT:
 					TypeEffect.type(content, 25);
 					Thread.sleepMS(200); Sys.print(" ");
@@ -43,9 +47,5 @@ class TypedText extends Text {
 		} else {
 			return;
 		}
-
-		#if debug
-		Sys.print("\n\nCreated TypedText Instance\n\n");
-		#end
 	}
 }
