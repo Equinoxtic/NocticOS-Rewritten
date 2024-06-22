@@ -5,15 +5,17 @@ import nocticos.ui.display.text.TypedText;
 using StringTools;
 
 class Input {
-	public function new(inputPromptMessage:String):Void {
-		if (inputPromptMessage == null || inputPromptMessage == '') {
+	public function new(inputDialogue:String):Void {
+		if (inputDialogue == null || inputDialogue == '') {
 			new TypedText('', DEFAULT);
 		} else {
-			new TypedText('[${inputPromptMessage}]: ');
+			new TypedText('[${inputDialogue}]: ');
 		}
 
 		var userInput:String = Sys.stdin().readLine();
 
-		Parser.parseCommandInput(userInput);
+		if (userInput != null) {
+			Parser.parseCommandInput(userInput);
+		}
 	}
 }
