@@ -2,7 +2,6 @@ package backend;
 
 import haxe.io.Bytes;
 import sys.io.FileOutput;
-import cpp.link.StaticRegexp;
 import nocticos.util.debug.Error;
 import sys.FileSystem;
 import haxe.io.Eof;
