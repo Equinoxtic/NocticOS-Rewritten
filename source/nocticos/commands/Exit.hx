@@ -1,5 +1,6 @@
 package nocticos.commands;
 
+import nocticos.ui.command.Command;
 import nocticos.ui.command.Command.BaseCommand;
 import backend.System;
 
@@ -9,8 +10,11 @@ class Exit extends BaseCommand {
 		if (flags != null) {
 			flags.pop();
 		}
+		if (Command.commandsList != null) {
+			Command.commandsList.pop();
+		}
 		#if (debug)
-		Sys.print("\nPopping flags and exiting...\n\n");
+		Sys.print("Clearing data...");
 		#end
 		System._EXIT(0);
 	}
