@@ -24,7 +24,7 @@ class Parser {
 		#if (debug)
 		for (flag in 0...flags.length) {
 			if (flags[flag+1] != null) {
-				Sys.stdout().writeString('${sCmd} flag: ${flags[flag+1]}\n');
+				Sys.print('${sCmd} flag: ${flags[flag+1]}\n');
 			}
 		}
 		#end
