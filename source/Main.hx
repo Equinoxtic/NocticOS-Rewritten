@@ -1,3 +1,5 @@
+import nocticos.ui.Prompt;
+import nocticos.ui.display.text.TypedText;
 import nocticos.util.CommandUtility;
 import nocticos.util.Thread;
 import backend.System;
@@ -17,6 +19,13 @@ class Main {
 				i+1
 			);
 		}
+
+		var prompt = new Prompt(DEFAULT, "Continue?", function():Void {
+			Sys.print("Continuing...");
+			Thread.sleep(0.85);
+			return;
+		});
+		prompt.initializePrompt();
 
 		Thread.sleep(0.025);
 		System._CLRSCR();
