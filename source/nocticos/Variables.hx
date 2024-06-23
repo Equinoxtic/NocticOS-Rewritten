@@ -18,7 +18,7 @@ class Variables
 	/**
 	 * The version of the application.
 	 */
-	public static final VERSION:String = FileStream.readFile(Paths.file('.VERSION'));
+	public static final VERSION:String = FileStream.readFile(Paths.file('data/.VERSION'));
 
 	/**
 	 * The GIT version of the application. (Typically on GitHub)
@@ -45,11 +45,11 @@ class Variables
 	 *		// The name of the command. Must be a string.
 	 *		"COMMAND_NAME",
 	 *
-	 *		// The array of aliases for the command. Type in ``[""]`` for no aliases.
-	 *		"COMMAND_ALIASES",
+	 *		// The array of aliases for the command. Type in ``["NO_ALIASES"]`` for no aliases.
+	 *		["COMMAND_ALIASES"],
 	 *
-	 *		// The array of flags for the command. Type in ``[""]`` for no flags.
-	 *		"COMMAND_FLAGS",
+	 *		// The array of flags for the command. Type in ``["NO_FLAGS"]`` for no flags.
+	 *		["COMMAND_FLAGS"],
 	 *
 	 *		// The description of the command. Must be a string.
 	 *		"COMMAND_DESCRIPTION"
@@ -63,21 +63,18 @@ class Variables
 			["--all", "-a"],
 			'Shows the list of available commands for ${Variables.GLOBAL_APPLICATION_NAME}'
 		],
-
 		[
 			"clear",
 			["clr", "cls", "clrscr"],
 			["NO_FLAGS"],
 			"Clears the current screen buffer."
 		],
-
 		[
 			"reload",
 			["refresh", "rbuf", "refbuf"],
 			["NO_FLAGS"],
 			"Refreshes / reloads the buffer."
 		],
-
 		[
 			"exit",
 			["quit", "q"],
