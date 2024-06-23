@@ -1,5 +1,6 @@
 package nocticos.commands;
 
+import nocticos.ui.command.Command;
 import nocticos.ui.command.Command.BaseCommand;
 import backend.System;
 
@@ -9,9 +10,9 @@ class Exit extends BaseCommand {
 		if (flags != null) {
 			flags.pop();
 		}
-		#if (debug)
-		Sys.print("\nPopping flags and exiting...\n\n");
-		#end
+		if (Command.commandsList != null) {
+			Command.commandsList.pop();
+		}
 		System._EXIT(0);
 	}
 }

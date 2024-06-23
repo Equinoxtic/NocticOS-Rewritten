@@ -21,13 +21,10 @@ class Instance {
 	 * @param emptyPrompt Whether the prompt displays empty text.
 	 */
 	public static function instantiate(instanceClass:Instance, ?hasPrompt:Bool = false, ?emptyPrompt:Bool = true):Void {
-		instanceClass.run(hasPrompt, emptyPrompt);
+		instanceClass._run(hasPrompt, emptyPrompt);
 	}
 
-	private final function run(usePrompt:Bool, emptyPrompt:Bool):Void {
-		#if debug
-		Sys.print("\n\nRunning NocticOS Instance\n\n");
-		#end
+	private final function _run(usePrompt:Bool, emptyPrompt:Bool):Void {
 		create();
 		if (usePrompt) {
 			new Prompt(DEFAULT, ((!emptyPrompt) ? "Press any key to continue..." : ""));
@@ -42,9 +39,5 @@ class Instance {
 	 *
 	 * Above ``super.create()`` is the initial state of the code while the post state is below ``super.create()``.
 	 */
-	public function create():Void {
-		#if debug
-		Sys.print("\n\nCreated NocticOS Instance\n\n");
-		#end
-	}
+	public function create():Void {}
 }

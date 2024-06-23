@@ -52,10 +52,6 @@ class Text {
 		if (cout) {
 			Sys.stdout().writeString(content);
 		}
-
-		#if debug
-		Sys.print("\n\nCreated Text Instance\n\n");
-		#end
 	}
 
 	private function translateColors(text:String, textColor:Null<TextColor>):String {

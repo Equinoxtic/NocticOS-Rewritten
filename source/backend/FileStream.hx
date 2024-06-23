@@ -2,14 +2,13 @@ package backend;
 
 import haxe.io.Bytes;
 import sys.io.FileOutput;
-import cpp.link.StaticRegexp;
 import nocticos.util.debug.Error;
 import sys.FileSystem;
 import haxe.io.Eof;
 import sys.io.File;
 import sys.io.FileInput;
 
-enum WriteMode {
+enum FileWriteMode {
 	/**
 	 * Write into file as a String.
 	 */
@@ -43,20 +42,15 @@ class FileStream extends File {
 	 * @param s The content / data to be written to the file.
 	 * @param writeMode The way how the data should be written.
 	 */
-	public static function writeFile(path:String, ?s:String = '', ?writeMode:Null<WriteMode> = WriteMode.STRING):Void {
+	public static function writeFile(path:String, ?s:String = '', ?writeMode:Null<FileWriteMode> = FileWriteMode.STRING):Void {
 		if (path == null || path == "") {
 			return;
 		}
-
-		#if (debug)
-		trace('\n\nReading path: $path\n\n');
-		#end
-
 		if (FileSystem.exists(path)) {
 			var file:FileOutput = File.write(path, false);
 			if (file != null) {
 				if (writeMode == null) {
-					writeMode = WriteMode.STRING;
+					writeMode = FileWriteMode.STRING;
 				}
 				switch(writeMode) {
 					case STRING:
@@ -73,17 +67,11 @@ class FileStream extends File {
 			}
 			file.close();
 		}
-
 		return;
 	}
 
 	public static function readFile(path:String):String {
 		var line:String = "";
-
-		#if debug
-		trace('\n\nReading path: $path\n\n');
-		#end
-
 		if (FileSystem.exists(path) && path != "" && path != null) {
 			var file:FileInput = File.read(path, false);
 			if (file != null) {
@@ -93,7 +81,6 @@ class FileStream extends File {
 		} else {
 			Error.throwError(NO_PATH_EXISTS, 'Path does not exist! [$path]', true, true);
 		}
-
 		return line;
 	}
 }
