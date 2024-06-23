@@ -5,7 +5,7 @@ class Paths {
 		return getAsset('$name$ext');
 	}
 
-	public static inline function getAsset(key:String, ?library:String = 'assets/data/'):String {
+	public static inline function getAsset(key:String, ?library:String = 'assets/'):String {
 		return '${library}${key}';
 	}
 }
