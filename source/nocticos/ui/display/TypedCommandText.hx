@@ -48,7 +48,7 @@ class TypedCommandText {
 			description = "< Command Description >";
 		}
 
-		stringBuffer.write('  -> ${StringBuffer.quotifyString(' $description ')}', WriteMode.APPEND);
+		stringBuffer.write('  -> \"${description}\"', WriteMode.APPEND);
 
 		return stringBuffer.read();
 	}
