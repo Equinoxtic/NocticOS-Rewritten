@@ -8,6 +8,7 @@ import backend.Instance;
 import nocticos.ui.MainScreen;
 
 class Main {
+	final targetState:MainScreen = new MainScreen();
 	public static function main():Void {
 		// Push and initialize commandsList.
 		for (i in 0...Variables.commandsList.length) {
