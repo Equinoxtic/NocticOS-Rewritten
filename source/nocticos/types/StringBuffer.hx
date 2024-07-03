@@ -59,6 +59,13 @@ class StringBuffer {
 		return (_getStringContent(s_buf_a) == _getStringContent(s_buf_b));
 	}
 
+	/**
+	 * Clears the current StringBuffer.
+	 */
+	public function clear():Void {
+		this._stringContent.pop();
+	}
+
 	private function _contentWrite(stringContent:Null<String>, writeMode:Null<WriteMode>):Void {
 		if (stringContent == null || stringContent.charAt(0) == '') {
 			return;
