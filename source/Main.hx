@@ -1,3 +1,4 @@
+import nocticos.util.UpdateChecker;
 import nocticos.ui.Prompt;
 import nocticos.ui.display.text.TypedText;
 import nocticos.util.CommandUtility;
@@ -10,6 +11,9 @@ import nocticos.ui.MainScreen;
 class Main {
 	final targetState:MainScreen = new MainScreen();
 	public static function main():Void {
+		// Run UpdateChecker class first.
+		UpdateChecker.check();
+
 		// Push and initialize commandsList.
 		for (i in 0...Variables.commandsList.length) {
 			CommandUtility.pushCommand(
@@ -20,13 +24,6 @@ class Main {
 				i+1
 			);
 		}
-
-		var prompt = new Prompt(DEFAULT, "Continue?", function():Void {
-			Sys.print("Continuing...");
-			Thread.sleep(0.85);
-			return;
-		});
-		prompt.initializePrompt();
 
 		Thread.sleep(0.025);
 		System._CLRSCR();
