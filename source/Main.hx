@@ -9,7 +9,14 @@ import backend.Instance;
 import nocticos.ui.MainScreen;
 
 class Main {
-	final targetState:MainScreen = new MainScreen();
+	/**
+	 * The targetted state to start with.
+	 */
+	static final targetState:MainScreen = new MainScreen();
+
+	/**
+	 * The entry point of NocticOS.
+	 */
 	public static function main():Void {
 		// Run UpdateChecker class first.
 		UpdateChecker.check();
@@ -29,6 +36,6 @@ class Main {
 		System._CLRSCR();
 
 		// Instantiate the MainScreen class.
-		Instance.instantiate(new MainScreen(), true);
+		Instance.instantiate(targetState, true);
 	}
 }
