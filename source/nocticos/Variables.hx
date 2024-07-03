@@ -45,10 +45,10 @@ class Variables
 	 *		// The name of the command. Must be a string.
 	 *		"COMMAND_NAME",
 	 *
-	 *		// The array of aliases for the command. Type in ``["NO_ALIASES"]`` for no aliases.
+	 *		// The array of aliases for the command. Type in ``["NO_ALIASES"]`` in the array for no aliases.
 	 *		["COMMAND_ALIASES"],
 	 *
-	 *		// The array of flags for the command. Type in ``["NO_FLAGS"]`` for no flags.
+	 *		// The array of flags for the command. Type in ``["NO_FLAGS"]`` in the array for no flags.
 	 *		["COMMAND_FLAGS"],
 	 *
 	 *		// The description of the command. Must be a string.
