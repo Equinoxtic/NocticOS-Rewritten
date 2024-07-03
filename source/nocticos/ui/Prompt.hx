@@ -12,8 +12,9 @@ enum PromptType
 
 class Prompt {
 	private var _answers:Array<Dynamic> = [
+		// Range: 0...1. [Default]
 		["Yes", "Y", "y"],
-		["No", "N", "n"],
+		["No", "N", "n"]
 	];
 
 	private var _promptType:PromptType = null;
@@ -39,7 +40,7 @@ class Prompt {
 		switch(this._promptType) {
 			case DEFAULT:
 				new TypedText(this._promptString, DEFAULT, WHITE);
-				Thread.sleepCallback(1.0, function() {
+				Thread.sleepCallback(0.003, function() {
 					Sys.print(" ");
 					new TypedText('${Variables.PROMPT_STRING}: ', DEFAULT, WHITE);
 				});
@@ -69,15 +70,21 @@ class Prompt {
 	}
 
 	private function _evaluateAnswers(input:String, ?callback:Null<Void->Void>):Void {
-		if (input != null) {
-			for (i in 0..._answers.length) {
-				if (input == _answers[i][0]) {
-					callback();
-					break;
-				} else if (input == _answers[i][1]) {
+		switch (this._promptType) {
+			case DEFAULT:
+				if (input != null) {
+					for (i in 0...1) {
+						for (j in 0..._answers[i].length) {
+							if (input == _answers[i][j]) {
+								callback();
+								break;
+							} else if (input == _answers[i][j]) {
+								break;
+							}
+						}
+					}
 					return;
 				}
-			}
 		}
 	}
 }
