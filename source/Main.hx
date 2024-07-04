@@ -35,11 +35,7 @@ class Main {
 		Thread.sleep(0.025);
 		System._CLRSCR();
 
-		final prompt:Prompt = new Prompt(PromptType.DEFAULT, "Continue?", function():Void {
-			System._CLRSCR();
-			// Instantiate the MainScreen class.
-			Instance.instantiate(targetState, true);
-		});
-		prompt.initializePrompt();
+		// Instantiate the MainScreen class.
+		Instance.instantiate(targetState, true);
 	}
 }
