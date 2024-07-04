@@ -10,9 +10,14 @@ enum PromptType
 	DEFAULT;
 }
 
+private enum PromptAction
+{
+	APPEND_OPTIONS;
+	REMOVE_OPTIONS;
+}
+
 class Prompt {
-	private var _answers:Array<Dynamic> = [
-		// Range: 0...1. [Default]
+	private var _answers_DEFAULT:Array<Dynamic> = [
 		["Yes", "Y", "y"],
 		["No", "N", "n"]
 	];
@@ -36,13 +41,18 @@ class Prompt {
 		this._promptCallback = callback.bind();
 	}
 
+	/**
+	 * Initializes the current prompt.
+	 */
 	public function initializePrompt():Void {
+		#if (debug)
+		outputPromptOptions();
+		#end
 		switch(this._promptType) {
 			case DEFAULT:
 				new TypedText(this._promptString, DEFAULT, WHITE);
 				Thread.sleepCallback(0.003, function() {
-					Sys.print(" ");
-					new TypedText('${Variables.PROMPT_STRING}: ', DEFAULT, WHITE);
+					new TypedText(' ${Variables.PROMPT_STRING}: ', DEFAULT, WHITE);
 				});
 
 				var uInput:String = Sys.stdin().readLine();
@@ -55,30 +65,86 @@ class Prompt {
 		}
 	}
 
-	public function pushPromptOption(optionsList:Array<String>):Void {
-		if (optionsList != null && _answers != null) {
-			_answers.push(optionsList);
+	/**
+	 * Pushes options to the prompt. Keep in mind that you may want to call ``clearPromptOptions()`` to insert and push customized options/answers.
+	 * @param optionsList The list options to push.
+	 */
+	public function pushPromptOptions(optionsList:Array<Dynamic>):Void {
+		if (optionsList != null) {
+			_promptAction(
+				this._promptType,
+				PromptAction.APPEND_OPTIONS,
+				optionsList
+			);
 		} else {
 			return;
 		}
 	}
 
+	/**
+	 * Clears all the current options for the current prompt.
+	 */
 	public function clearPromptOptions():Void {
-		if (_answers != null) {
-			_answers.pop();
+		_promptAction(
+			this._promptType,
+			PromptAction.REMOVE_OPTIONS,
+			null
+		);
+	}
+
+	#if (debug)
+	public function outputPromptOptions():Void {
+		switch(this._promptType) {
+			case DEFAULT:
+				for (i in 0..._answers_DEFAULT.length) {
+					Sys.print('[Prompt Option ${i+1}]: ${_answers_DEFAULT[i]}\n');
+				}
+		}
+	}
+	#end
+
+	private function _promptAction(promptMode:Null<PromptType>, ?action:Null<PromptAction> = PromptAction.APPEND_OPTIONS, ?list:Null<Array<Dynamic>>):Void {
+		if (promptMode != null) {
+			switch(promptMode) {
+				case DEFAULT:
+					_promptActionCreate(action, _answers_DEFAULT, list);
+			}
+		}
+	}
+
+	private function _promptActionCreate(?currentAction:Null<PromptAction> = PromptAction.APPEND_OPTIONS, ?targetList:Null<Array<Dynamic>>, ?pushList:Null<Array<Dynamic>>):Void {
+		if (targetList == null) {
+			return;
+		}
+		switch(currentAction) {
+			case APPEND_OPTIONS:
+				if (pushList == null || pushList.length <= 0) {
+					return;
+				}
+				targetList.push(pushList);
+
+			case REMOVE_OPTIONS:
+				do {
+					targetList.pop();
+				} while (targetList.length > 0);
 		}
 	}
 
 	private function _evaluateAnswers(input:String, ?callback:Null<Void->Void>):Void {
-		switch (this._promptType) {
+		switch(this._promptType) {
 			case DEFAULT:
+				// Check if the length of valid answers is 0, otherwise return.
+				if (_answers_DEFAULT.length <= 0) {
+					return;
+				}
+
 				if (input != null) {
-					for (i in 0...1) {
-						for (j in 0..._answers[i].length) {
-							if (input == _answers[i][j]) {
+					for (i in 0..._answers_DEFAULT.length) {
+						for (j in 0..._answers_DEFAULT[i].length) {
+							if (input == _answers_DEFAULT[0][j]) {
 								callback();
 								break;
-							} else if (input == _answers[i][j]) {
+							} else if (input == _answers_DEFAULT[1][j]) {
 								break;
 							}
 						}
