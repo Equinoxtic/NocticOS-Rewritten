@@ -1,83 +1,28 @@
 package nocticos.ui.display.text;
 
+import nocticos.util.StringFormatter;
+import nocticos.lib.Colorizer.Color;
 import backend.ANSI;
 
-
-enum TextColor {
-	WHITE;
-	BLACK;
-	RED;
-	GREEN;
-	YELLOW;
-	BLUE;
-	MAGENTA;
-	CYAN;
-}
-
-enum TextCase {
-	DEFAULT;
-	UPPERCASE;
-	LOWERCASE;
-}
-
-class Text {
-	public var content:String = "";
-
+class Text extends BasicElement {
 	/**
 	 * Create a new text. (Modified string type.)
 	 * @param text The string of the text
 	 * @param textCase The case of the text. (i.e. LOWECASE / UPPERCASE)
 	 * @param cout Should the text be displayed in the output?
 	 */
-	public function new(text:String, ?textCase:Null<TextCase> = DEFAULT, ?textColor:Null<TextColor>, ?cout:Bool = false):Void {
-		if (text == null || text == '')
-			return;
-
-		var newString:String = text;
-		if (textCase != null) {
-			switch(textCase) {
-				case UPPERCASE:
-					newString = text.toUpperCase();
-				case LOWERCASE:
-					newString = text.toLowerCase();
-				default:
-					newString = text;
-			}
-		} else {
+	public function new(text:String, textColor:Null<Color>, ?cout:Bool = false):Void {
+		if (text == null || text == '') {
 			return;
 		}
 
-		content = translateColors(newString, textColor);
+		this.pushProperty('content', text);
+		this.pushProperty('color', textColor);
 
 		if (cout) {
-			Sys.stdout().writeString(content);
-		}
-	}
-
-	private function translateColors(text:String, textColor:Null<TextColor>):String {
-		if (textColor == null)
-			return "";
-
-		var result:String = ANSI.set(White) + text;
-
-		final textPresets:Array<Dynamic> = [
-			[WHITE, White],
-			[BLACK, Black],
-			[RED, Red],
-			[GREEN, Green],
-			[YELLOW, Yellow],
-			[MAGENTA, Magenta],
-			[BLUE, Blue],
-			[CYAN, Cyan],
-		];
-
-		for (i in 0...textPresets.length) {
-			if (textColor.equals(textPresets[i][0])) {
-				result = ANSI.set(textPresets[i][1]) + text;
-				break;
-			}
+			Sys.print(StringFormatter.color(this.getProperty('content'), this.getProperty('color')));
 		}
 
-		return result + ANSI.set(Off);
+		super();
 	}
 }
