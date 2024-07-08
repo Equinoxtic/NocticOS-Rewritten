@@ -5,6 +5,7 @@ using StringTools;
 enum WriteMode {
 	WRITE;
 	APPEND;
+	SPLIT_APPEND;
 }
 
 class StringBuffer {
@@ -25,6 +26,19 @@ class StringBuffer {
 	public function write(string:Null<String>, ?mode:Null<WriteMode> = APPEND):Void {
 		if (string != null) {
 			_contentWrite(string, mode);
+		}
+	}
+
+	/**
+	 * Writes the current array of string to the StringBuffer. The write mode is always ``APPEND`` by default.
+	 * @param stringArray The array of strings to be written into the StringBuffer.
+	 */
+	public function writeArray(stringArray:Null<Array<String>>):Void {
+		if (stringArray == null || stringArray.length <= 0) {
+			return;
+		}
+		for (i in 0...stringArray.length) {
+			_contentWrite(stringArray[i], WriteMode.APPEND);
 		}
 	}
 
@@ -63,20 +77,32 @@ class StringBuffer {
 	 * Clears the current StringBuffer.
 	 */
 	public function clear():Void {
-		this._stringContent.pop();
+		while (this._stringContent.length > 0) {
+			this._stringContent.pop();
+		}
 	}
 
-	private function _contentWrite(stringContent:Null<String>, writeMode:Null<WriteMode>):Void {
-		if (stringContent == null || stringContent.charAt(0) == '') {
+	private function _contentWrite(string:Null<String>, writeMode:Null<WriteMode>):Void {
+		if (string == null || string.charAt(0) == '') {
 			return;
 		}
 		if (writeMode != null) {
 			switch(writeMode) {
 				case WRITE:
-					this._stringContent.pop(); // Pop everything in the array first so no strings can conflict with eachother.
-					this._stringContent[0] = stringContent;
+					while (this._stringContent.length > 0) {
+						this._stringContent.pop();
+					}
+					this._stringContent[0] = string;
 				case APPEND:
-					this._stringContent.push(stringContent);
+					this._stringContent.push(string);
+
+				case SPLIT_APPEND:
+					var split:Array<String> = string.split(',');
+					if (split != null) {
+						for (i in 0...split.length) {
+							this._stringContent.push(split[i]);
+						}
+					}
 			}
 		}
 	}
