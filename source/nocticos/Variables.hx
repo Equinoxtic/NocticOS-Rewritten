@@ -24,7 +24,7 @@ class Variables
 	/**
 	 * The version of the application.
 	 */
-	public static final VERSION:String = FileStream.readFile(Paths.file('data/.VERSION'));
+	public static final VERSION:String = "0.0.1";
 
 	/**
 	 * The GIT version of the application. (Typically on GitHub)
