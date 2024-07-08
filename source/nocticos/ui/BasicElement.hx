@@ -1,5 +1,9 @@
 package nocticos.ui;
 
+#if (debug)
+import nocticos.lib.io.StandardOutput;
+#end
+
 class BasicElement {
 	private var _elementProperties:Map<String, Dynamic> = [];
 
