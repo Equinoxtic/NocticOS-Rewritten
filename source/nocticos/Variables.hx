@@ -3,6 +3,12 @@ package nocticos;
 import backend.FileStream;
 import nocticos.lib.HTTP;
 
+enum OutputSymbols {
+	INFO;
+	WARNING;
+	ERROR;
+}
+
 class Variables
 {
 	/**
@@ -82,4 +88,14 @@ class Variables
 			'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.'
 		],
 	];
+
+	public static final OUTPUT_SYMBOLS:Map<OutputSymbols, String> = [
+		INFO 	=> '+',
+		WARNING => '?',
+		ERROR 	=> '!'
+	];
+
+	public static function getOutputSymbol(?type:Null<OutputSymbols> = INFO):String {
+		return OUTPUT_SYMBOLS[type];
+	}
 }
