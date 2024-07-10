@@ -16,13 +16,13 @@ class CommandCalls {
 
 			case "reload" | "refresh" | "rbuf" | "refbuf":
 				System._CLRSCR();
-				Instance.instantiate(new nocticos.ui.MainScreen());
+				Instance.instantiate(new nocticos.ui.states.MainScreen());
 
 			case "clear" | "clr" | "cls" | "clrscr":
 				System._CLRSCR();
 
 			default:
-				Instance.instantiate(new nocticos.ui.InvalidCommandState());
+				Instance.instantiate(new nocticos.ui.states.InvalidCommandState());
 		}
 	}
 }

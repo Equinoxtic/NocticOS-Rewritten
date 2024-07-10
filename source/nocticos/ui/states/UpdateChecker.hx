@@ -1,4 +1,4 @@
-package nocticos.util;
+package nocticos.ui.states;
 
 import nocticos.types.StringBuffer;
 

@@ -1,4 +1,4 @@
-package nocticos.ui;
+package nocticos.ui.states;
 
 import nocticos.input.Parser;
 import nocticos.ui.display.text.TypedText;

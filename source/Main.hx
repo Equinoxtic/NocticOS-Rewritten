@@ -1,4 +1,4 @@
-import nocticos.util.UpdateChecker;
+import nocticos.ui.states.UpdateChecker;
 import nocticos.ui.Prompt;
 import nocticos.ui.display.text.TypedText;
 import nocticos.util.CommandUtility;
@@ -6,7 +6,7 @@ import nocticos.util.Thread;
 import backend.System;
 import nocticos.Variables;
 import backend.Instance;
-import nocticos.ui.MainScreen;
+import nocticos.ui.states.MainScreen;
 
 class Main {
 	/**
