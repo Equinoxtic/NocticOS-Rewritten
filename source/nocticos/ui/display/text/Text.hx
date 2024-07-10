@@ -12,6 +12,8 @@ class Text extends BasicElement {
 	 * @param cout Should the text be displayed in the output?
 	 */
 	public function new(text:String, textColor:Null<Color>, ?cout:Bool = false):Void {
+		super();
+
 		if (text == null || text == '') {
 			return;
 		}
@@ -22,7 +24,5 @@ class Text extends BasicElement {
 		if (cout) {
 			Sys.print(StringFormatter.color(this.getProperty('content'), this.getProperty('color')));
 		}
-
-		super();
 	}
 }

@@ -1,5 +1,6 @@
 package nocticos.ui.display.text;
 
+import nocticos.util.StringFormatter;
 import nocticos.lib.Colorizer.Color;
 import nocticos.ui.display.text.effects.TypeEffect;
 
@@ -28,7 +29,9 @@ class TypedText extends Text {
 				case QUICK:
 					speed = 0.001;
 			}
-			TypeEffect.type(this.getProperty('content'), speed);
+			TypeEffect.type(
+				StringFormatter.color(this.getProperty('content'), this.getProperty('color')), speed
+			);
 		} else {
 			return;
 		}
