@@ -26,10 +26,28 @@ class Colorizer {
 		CYAN		=> Cyan
 	];
 
-	public static function setColor(text:String, textColor:Null<Color>):String {
+	static final highlightColorMap:Map<Color, Attribute> = [
+		WHITE 		=> WhiteBack,
+		BLACK		=> BlackBack,
+		RED			=> RedBack,
+		GREEN		=> GreenBack,
+		YELLOW		=> YellowBack,
+		MAGENTA		=> MagentaBack,
+		BLUE		=> BlueBack,
+		CYAN		=> CyanBack
+	];
+
+	public static function setColor(text:Null<String>, textColor:Null<Color>):String {
 		if (text == null || textColor == null) {
 			return "";
 		}
 		return ANSI.set(textColorMap[textColor]) + text + ANSI.set(Off);
+	}
+
+	public static function highlight(text:Null<String>, highlightColor:Null<Color>):String {
+		if (text == null || highlightColor == null) {
+			return "";
+		}
+		return ANSI.set(highlightColorMap[highlightColor]) + ANSI.set(Attribute.Black) + text + ANSI.set(Off);
 	}
 }

@@ -4,7 +4,10 @@ import nocticos.lib.Colorizer;
 import nocticos.types.StringBuffer;
 
 class StringFormatter {
-	public static function color(text:String, ?color:Null<Color> = Color.WHITE):String {
+	public static function color(text:String, ?color:Null<Color> = Color.WHITE, ?background:Bool = false):String {
+		if (background) {
+			return Colorizer.highlight(text, color);
+		}
 		return Colorizer.setColor(text, color);
 	}
 
