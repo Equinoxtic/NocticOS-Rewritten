@@ -7,4 +7,11 @@
 [Bb]in/obj/
 [Bb]in/src/
 
-#
+# Misc.
+
+[Ll]ogs/
+[Ll]ogs/*.txt
+[Ll]ogs/*.log
+[Cc]rash-logs/
+[Cc]rash-logs/*.txt
+[Cc]rash-logs/*.log
