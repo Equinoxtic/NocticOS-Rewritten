@@ -15,7 +15,9 @@ class MainScreen extends Instance {
 		new TypedText('> Welcome to ${Variables.GLOBAL_APPLICATION_NAME} (${Variables.VERSION}). Type in \'help -a\' to\nget started.\n\n', DEFAULT, WHITE);
 
 		do {
-			Sys.print('${Variables.COMMAND_LINE_PROMPT} ');
+			new Shell([
+				['~', Color.YELLOW], ['$', Color.CYAN]
+			], true);
 			new Input(null);
 		} while (true);
 
