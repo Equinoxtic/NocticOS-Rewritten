@@ -10,9 +10,7 @@ class Instance {
 	/**
 	 * Create a new NocticOS Instance.
 	 */
-	public function new():Void {
-		Sys.print(ANSI.title(Variables.APPLICATION_TITLE));
-	}
+	public function new():Void {}
 
 	/**
 	 * Intantiates / runs a new class. Can also be used to switch and run other code of classes.

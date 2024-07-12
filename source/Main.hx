@@ -1,3 +1,4 @@
+import backend.ANSI;
 import nocticos.ui.states.UpdateChecker;
 import nocticos.ui.Prompt;
 import nocticos.ui.display.text.TypedText;
@@ -18,6 +19,9 @@ class Main {
 	 * The entry point of NocticOS.
 	 */
 	public static function main():Void {
+		// Set the title of the application.
+		Sys.print(ANSI.title(Variables.APPLICATION_TITLE));
+
 		// Run UpdateChecker class first.
 		UpdateChecker.check();
 
