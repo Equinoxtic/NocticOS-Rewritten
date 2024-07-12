@@ -1,5 +1,6 @@
 package nocticos.util;
 
+import nocticos.lib.Logging;
 import nocticos.types.StringBuffer;
 import nocticos.lib.Colorizer.Color;
 import nocticos.util.debug.Error;
@@ -34,6 +35,7 @@ class CommandUtility {
 			),
 			'\"${description}\"'
 		]));
+		Logging.logMessage(stringBuffer.read());
 		stringBuffer.out();
 		stringBuffer.clear();
 

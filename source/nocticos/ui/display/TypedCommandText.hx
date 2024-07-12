@@ -1,5 +1,6 @@
 package nocticos.ui.display;
 
+import nocticos.lib.Logging;
 import nocticos.util.ArrayUtil;
 import nocticos.lib.Colorizer.Color;
 import nocticos.util.StringFormatter;
@@ -71,9 +72,13 @@ class TypedCommandText extends BasicElement {
 		if (description == "" || description.length <= 0) {
 			description = "< Command Description >";
 		}
-		stringBuffer.write('  * \"${description}\"', WriteMode.APPEND);
+		stringBuffer.write('  {0} {1}'.format([
+			StringFormatter.color('->', Color.GREEN), '\"${description}\"'
+		]), WriteMode.APPEND);
 
 		final stringBufferRead = stringBuffer.read();
+
+		Logging.logMessage('FORMATTED COMMAND: ${stringBufferRead}');
 
 		stringBuffer.clear();
 

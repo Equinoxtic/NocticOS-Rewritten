@@ -1,6 +1,9 @@
 package nocticos.input;
 
+import nocticos.lib.Logging;
 import nocticos.ui.command.CommandCalls;
+
+using StringTools;
 
 class Parser {
 	public static var currentCommand:String = "";
@@ -19,15 +22,15 @@ class Parser {
 			}
 		}
 
-		var sCmd = flags[0]; // flags[0] is the main command (i.e. "> help")
+		var sCmd = flags[0].trim(); // flags[0] is the main command (i.e. "> help")
 
-		#if (debug)
-		for (flag in 0...flags.length) {
-			if (flags[flag+1] != null) {
-				Sys.print('${sCmd} flag: ${flags[flag+1]}\n');
+		if (!(flags.length - 1 <= 0)) {
+			for (flag in 0...flags.length - 1) {
+				Logging.logMessage('[Command Ran: ${sCmd}] -> Flag(s): ${flags[flag+1]}\n');
 			}
+		} else {
+			Logging.logMessage('[Command Ran: ${sCmd}]\n');
 		}
-		#end
 
 		currentCommand = sCmd;
 
