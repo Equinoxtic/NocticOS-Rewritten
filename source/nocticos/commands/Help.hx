@@ -39,10 +39,10 @@ class Help extends BaseCommand
 		for (i in 0...Command.commandsList.length) {
 			if (showAll) {
 				new TypedCommandText(
-					Command.getCommandName(i),
-					Command.getCommandDescription(i),
-					Command.getCommandAliases(i),
-					Command.getCommandFlags(i)
+					Command.getCommandData(i, CommandData.NAME),
+					Command.getCommandData(i, CommandData.DESCRIPTION),
+					Command.getCommandData(i, CommandData.ALIASES),
+					Command.getCommandData(i, CommandData.FLAGS)
 				);
 			} else {
 				new TypedCommandText(Command.commandsList[i][0], Command.commandsList[i][3], null, null);
