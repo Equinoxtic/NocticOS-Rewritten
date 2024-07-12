@@ -1,5 +1,6 @@
 package nocticos.ui.display;
 
+import nocticos.util.ArrayUtil;
 import nocticos.lib.Colorizer.Color;
 import nocticos.util.StringFormatter;
 import nocticos.types.StringBuffer;
@@ -49,13 +50,13 @@ class TypedCommandText extends BasicElement {
 		if (aliases != null && flags != null) {
 			if (aliases.length > 0 && aliases[0].toUpperCase() != "NO_ALIASES") {
 				var aliasesString:String = '${
-					StringFormatter.color(CommandUtility.appendStringArray(aliases, ' | '), Color.YELLOW)
+					StringFormatter.color(ArrayUtil.getStringContents(aliases, ' | '), Color.YELLOW)
 				}';
 				stringBuffer.write(' // [ Alias(es): ${aliasesString} ]', WriteMode.APPEND);
 			}
 			if (flags.length > 0 && flags[0].toUpperCase() != "NO_FLAGS") {
 				var flagsString:String = '${StringFormatter.color(
-					CommandUtility.appendStringArray(flags, ', '), Color.CYAN)
+					ArrayUtil.getStringContents(flags, ', '), Color.CYAN)
 				}';
 				stringBuffer.write(' : ( Flag(s): ${flagsString} )', WriteMode.APPEND);
 			}
