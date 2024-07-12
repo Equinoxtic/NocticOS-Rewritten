@@ -24,8 +24,14 @@ class CommandUtility {
 
 		stringBuffer.write("{0} > {1} : {2}\n    -> {3} \n\n".format([
 			StringFormatter.mappedSurround(StringFormatter.color('PUSHED COMMAND', Color.GREEN), ['[ ', ' ]']),
-			StringFormatter.mappedSurround(StringFormatter.color(ArrayUtil.getStringContents(aliases, ', '), Color.YELLOW), ['[', ']']),
-			StringFormatter.mappedSurround(StringFormatter.color(ArrayUtil.getStringContents(flags, ', '), Color.CYAN), ['[', ']']),
+			StringFormatter.mappedSurround(
+				StringFormatter.color('Alias(es): ${ArrayUtil.getStringContents(aliases, ', ')}', Color.YELLOW),
+				['[', ']']
+			),
+			StringFormatter.mappedSurround(
+				StringFormatter.color('Flag(s): ${ArrayUtil.getStringContents(flags, ', ')}', Color.CYAN),
+				['[', ']']
+			),
 			'\"${description}\"'
 		]));
 		stringBuffer.out();
