@@ -52,20 +52,26 @@ class TypedCommandText extends BasicElement {
 				var aliasesString:String = '${
 					StringFormatter.color(ArrayUtil.getStringContents(aliases, ' | '), Color.YELLOW)
 				}';
-				stringBuffer.write(' // [ Alias(es): ${aliasesString} ]', WriteMode.APPEND);
+				stringBuffer.write('\n  : [ {0} : {1} ]'.format([
+					StringFormatter.color('Alias(es)', Color.WHITE, true),
+					aliasesString
+				]), WriteMode.APPEND);
 			}
 			if (flags.length > 0 && flags[0].toUpperCase() != "NO_FLAGS") {
 				var flagsString:String = '${StringFormatter.color(
 					ArrayUtil.getStringContents(flags, ', '), Color.CYAN)
 				}';
-				stringBuffer.write(' : ( Flag(s): ${flagsString} )', WriteMode.APPEND);
+				stringBuffer.write('\n  : ( {0} : {1} )'.format([
+					StringFormatter.color('Flag(s)', Color.WHITE, true),
+					flagsString
+				]), WriteMode.APPEND);
 			}
 		}
 		stringBuffer.write('\n', WriteMode.APPEND);
 		if (description == "" || description.length <= 0) {
 			description = "< Command Description >";
 		}
-		stringBuffer.write('  -> \"${description}\"', WriteMode.APPEND);
+		stringBuffer.write('  * \"${description}\"', WriteMode.APPEND);
 
 		final stringBufferRead = stringBuffer.read();
 
