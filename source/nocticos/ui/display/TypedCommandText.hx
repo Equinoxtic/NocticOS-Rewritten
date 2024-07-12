@@ -51,13 +51,13 @@ class TypedCommandText extends BasicElement {
 				var aliasesString:String = '${
 					StringFormatter.color(CommandUtility.appendStringArray(aliases, ' | '), Color.YELLOW)
 				}';
-				stringBuffer.write(' // [ A: ${aliasesString} ]', WriteMode.APPEND);
+				stringBuffer.write(' // [ Alias(es): ${aliasesString} ]', WriteMode.APPEND);
 			}
 			if (flags.length > 0 && flags[0].toUpperCase() != "NO_FLAGS") {
 				var flagsString:String = '${StringFormatter.color(
 					CommandUtility.appendStringArray(flags, ', '), Color.CYAN)
 				}';
-				stringBuffer.write(' : ( ${flagsString} )', WriteMode.APPEND);
+				stringBuffer.write(' : ( Flag(s): ${flagsString} )', WriteMode.APPEND);
 			}
 		}
 		stringBuffer.write('\n', WriteMode.APPEND);
