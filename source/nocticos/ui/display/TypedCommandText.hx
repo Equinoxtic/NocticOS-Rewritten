@@ -1,10 +1,13 @@
 package nocticos.ui.display;
 
+import nocticos.lib.Colorizer.Color;
+import nocticos.util.StringFormatter;
 import nocticos.types.StringBuffer;
 import nocticos.ui.display.text.TypedText;
 import nocticos.util.CommandUtility;
 
 using StringTools;
+using nocticos.util.StringUtil;
 
 class TypedCommandText extends BasicElement {
 	/**
@@ -42,16 +45,19 @@ class TypedCommandText extends BasicElement {
 
 	private function _formatCommand(name:String, aliases:Array<String>, flags:Array<String>, description:Null<String>):String {
 		var stringBuffer:StringBuffer = new StringBuffer();
-		stringBuffer.write('* [ $name ]', WriteMode.APPEND);
+		stringBuffer.write('* [ ${StringFormatter.color(name, Color.YELLOW)} ]', WriteMode.APPEND);
 		if (aliases != null && flags != null) {
 			if (aliases.length > 0 && aliases[0].toUpperCase() != "NO_ALIASES") {
-				var aliasesString:String = '${CommandUtility.appendStringArray(aliases, ' | ')}';
-				stringBuffer.write(' // [ A: $aliasesString ]', WriteMode.APPEND);
+				var aliasesString:String = '${
+					StringFormatter.color(CommandUtility.appendStringArray(aliases, ' | '), Color.YELLOW)
+				}';
+				stringBuffer.write(' // [ A: ${aliasesString} ]', WriteMode.APPEND);
 			}
-
 			if (flags.length > 0 && flags[0].toUpperCase() != "NO_FLAGS") {
-				var flagsString:String = '${CommandUtility.appendStringArray(flags, ', ')}';
-				stringBuffer.write(' : ( $flagsString )', WriteMode.APPEND);
+				var flagsString:String = '${StringFormatter.color(
+					CommandUtility.appendStringArray(flags, ', '), Color.CYAN)
+				}';
+				stringBuffer.write(' : ( ${flagsString} )', WriteMode.APPEND);
 			}
 		}
 		stringBuffer.write('\n', WriteMode.APPEND);

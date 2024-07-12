@@ -21,6 +21,8 @@ class Main {
 		// Run UpdateChecker class first.
 		UpdateChecker.check();
 
+		System._CLRSCR();
+
 		// Push and initialize commandsList.
 		for (i in 0...Variables.commandsList.length) {
 			CommandUtility.pushCommand(
@@ -32,7 +34,7 @@ class Main {
 			);
 		}
 
-		Thread.sleep(0.025);
+		Thread.sleep(1.0);
 		System._CLRSCR();
 
 		// Instantiate the MainScreen class.
