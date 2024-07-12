@@ -24,13 +24,13 @@ class Main {
 		System._CLRSCR();
 
 		// Push and initialize commandsList.
-		for (i in 0...Variables.commandsList.length) {
+		for (commandIndex in 0...Variables.commandsList.length) {
 			CommandUtility.pushCommand(
-				Variables.commandsList[i][0],
-				Variables.commandsList[i][1],
-				Variables.commandsList[i][2],
-				Variables.commandsList[i][3],
-				i+1
+				Variables.commandsList[commandIndex][0],
+				Variables.commandsList[commandIndex][1],
+				Variables.commandsList[commandIndex][2],
+				Variables.commandsList[commandIndex][3],
+				commandIndex + 1
 			);
 		}
 
