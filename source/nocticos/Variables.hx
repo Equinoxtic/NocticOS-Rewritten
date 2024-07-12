@@ -98,4 +98,19 @@ class Variables
 	public static function getOutputSymbol(?type:Null<OutputSymbols> = INFO):String {
 		return OUTPUT_SYMBOLS[type];
 	}
+
+	/**
+	 * Enable a more performant version of NocticOS. This will disable colors and the 'type effect'.
+	 */
+	public static var PERFORMANT_MODE:Bool = false;
+
+	/**
+	 * Forces the type effect to have a more instantaneous speed.
+	 */
+	public static final FORCE_INSTANTANEOUS_TYPE_EFFECT:Bool = true;
+
+	/**
+	 * Whether colors should be displayed on the screen.
+	 */
+	public static final ALLOW_COLORS:Bool = true;
 }

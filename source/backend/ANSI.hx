@@ -4,6 +4,7 @@
 
 package backend;
 
+import nocticos.Variables;
 import haxe.macro.Expr;
 
 using StringTools;
@@ -109,10 +110,13 @@ class ANSI {
 
 	@:ansi
 	public static function aset(attributes:Array<Dynamic>):String {
-		return CSI+[for (arg in attributes) {
-			if (!Std.is(arg, Attribute)) throw "Set argument is not an Attribute: "+arg;
-			values.get(arg);
-		}].join(";")+"m";
+		if (Variables.ALLOW_COLORS && !Variables.PERFORMANT_MODE) {
+			return CSI+[for (arg in attributes) {
+				if (!Std.is(arg, Attribute)) throw "Set argument is not an Attribute: "+arg;
+				values.get(arg);
+			}].join(";")+"m";
+		}
+		return "";
 	}
 
 	private static function detectSupport() {
