@@ -15,29 +15,10 @@ using StringTools;
 using nocticos.util.StringUtil;
 
 enum FileWriteMode {
-	/**
-	 * Write into file as a String.
-	 */
 	STRING;
-
-	/**
-	 * Write into file as Bytes.
-	 */
 	BYTES;
-
-	/**
-	 * Write into file as an Int.
-	 */
 	INT;
-
-	/**
-	 * Write into file as a Float.
-	 */
 	FLOAT;
-
-	/**
-	 * Write into file as a Double.
-	 */
 	DOUBLE;
 }
 
@@ -79,6 +60,10 @@ class FileStream extends File {
 		return;
 	}
 
+	/**
+	 * Clears the given file.
+	 * @param path the path of the file.
+	 */
 	public static function clearFile(path:String):Void {
 		if (path == null || path == "") {
 			return;
@@ -93,20 +78,32 @@ class FileStream extends File {
 		return;
 	}
 
+	/**
+	 * Reads the WHOLE contents of the file.
+	 * @param path The path of the file to be read.
+	 * @return String
+	 */
 	public static function readFile(path:String):String {
-		var line:String = "";
 		if (FileSystem.exists(path) && path != "" && path != null) {
-			var file:FileInput = File.read(path, false);
+			var file:String = File.getContent(path);
 			if (file != null) {
-				line = file.readLine();
+				try {
+					return Std.string(file);
+				} catch (eof:Eof) {
+					return null;
+				}
 			}
-			file.close();
 		} else {
 			Error.throwError(NO_PATH_EXISTS, 'Path does not exist! [$path]', true, true);
 		}
-		return line;
+		return null;
 	}
 
+	/**
+	 * Creates a new item given the path and the type of item to be created.
+	 * @param path The path/name for the item.
+	 * @param type The type of item to create.
+	 */
 	public static function newItem(path:Null<String>, ?type:Null<ItemType> = ItemType.FILE):Void {
 		if (path == null || path.trim() == '' || type == null) {
 			return;
