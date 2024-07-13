@@ -1,5 +1,6 @@
 package nocticos.commands;
 
+import nocticos.util.CommandUtility;
 import nocticos.ui.display.TypedCommandText;
 import backend.System;
 import nocticos.ui.display.text.TypedText;
@@ -39,10 +40,10 @@ class Help extends BaseCommand
 		for (i in 0...Command.commandsList.length) {
 			if (showAll) {
 				new TypedCommandText(
-					Command.getCommandData(i, CommandData.NAME),
-					Command.getCommandData(i, CommandData.DESCRIPTION),
-					Command.getCommandData(i, CommandData.ALIASES),
-					Command.getCommandData(i, CommandData.FLAGS)
+					CommandUtility.getCommandData(i, CommandData.NAME),
+					CommandUtility.getCommandData(i, CommandData.DESCRIPTION),
+					CommandUtility.getCommandData(i, CommandData.ALIASES),
+					CommandUtility.getCommandData(i, CommandData.FLAGS)
 				);
 			} else {
 				new TypedCommandText(Command.commandsList[i][0], Command.commandsList[i][3], null, null);

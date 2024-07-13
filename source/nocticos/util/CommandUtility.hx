@@ -41,4 +41,21 @@ class CommandUtility {
 
 		return;
 	}
+
+	public static function getCommandData(?index:Int = 0, ?commandDataType:Null<CommandData> = NAME):Dynamic {
+		var targetedIndex:Int = 0;
+		if (!commandDataType.equals(CommandData.ALIASES) && !commandDataType.equals(CommandData.FLAGS)) {
+			if (commandDataType.equals(CommandData.DESCRIPTION)) {
+				targetedIndex = 3;
+			}
+		} else {
+			if (commandDataType.equals(CommandData.ALIASES)) {
+				return Command.commandsList[index][1].split(' | ');
+			}
+			if (commandDataType.equals(CommandData.FLAGS)) {
+				return Command.commandsList[index][2].split(', ');
+			}
+		}
+		return Command.commandsList[index][targetedIndex];
+	}
 }
