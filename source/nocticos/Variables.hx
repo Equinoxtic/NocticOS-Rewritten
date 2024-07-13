@@ -82,6 +82,12 @@ class Variables
 			"Refreshes / reloads the buffer."
 		],
 		[
+			"logs",
+			["NO_ALIASES"],
+			["NO_FLAGS"],
+			"Opens the log file of the current session."
+		],
+		[
 			"exit",
 			["quit", "q"],
 			["NO_FLAGS"],

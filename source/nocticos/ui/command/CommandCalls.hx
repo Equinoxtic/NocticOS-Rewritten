@@ -1,5 +1,6 @@
 package nocticos.ui.command;
 
+import nocticos.lib.Logging;
 import backend.System;
 import nocticos.commands.Exit;
 import nocticos.commands.Help;
@@ -20,6 +21,10 @@ class CommandCalls {
 
 			case "clear" | "clr" | "cls" | "clrscr":
 				System._CLRSCR();
+
+			case "logs":
+				System._CLRSCR();
+				Logging.readLogs();
 
 			default:
 				Instance.instantiate(new nocticos.ui.states.InvalidCommandState());
