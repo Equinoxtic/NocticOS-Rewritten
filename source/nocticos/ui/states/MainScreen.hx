@@ -16,7 +16,16 @@ class MainScreen extends Instance {
 
 		do {
 			new Shell([
-				['~', Color.YELLOW], ['$', Color.CYAN]
+				[
+					' ~ ',
+					Color.YELLOW,
+					true,
+					Color.CYAN
+				],
+				[
+					' $',
+					Color.CYAN
+				]
 			], true);
 			new Input(null);
 		} while (true);

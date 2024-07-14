@@ -7,7 +7,9 @@ class Shell {
 				ShellRenderer.stage(
 					shellAttributes[attributeIndex][0],
 					(attributeIndex + 1),
-					((color) ? shellAttributes[attributeIndex][1] : null)
+					((color) ? shellAttributes[attributeIndex][1] : null),
+					((color) ? shellAttributes[attributeIndex][2] : false),
+					((color) ? shellAttributes[attributeIndex][3] : null)
 				);
 			}
 			Sys.print(" ");
