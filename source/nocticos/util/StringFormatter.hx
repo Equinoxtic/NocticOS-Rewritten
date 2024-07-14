@@ -4,11 +4,15 @@ import nocticos.lib.Colorizer;
 import nocticos.types.StringBuffer;
 
 class StringFormatter {
-	public static function color(text:String, ?color:Null<Color> = Color.WHITE, ?background:Bool = false):String {
-		if (background) {
-			return Colorizer.highlight(text, color);
+	public static function color(text:String, ?color:Null<Color> = Color.WHITE, ?hasBackground:Bool = false):String {
+		if (hasBackground) {
+			return Colorizer.setHighlight(text, color, Color.BLACK);
 		}
 		return Colorizer.setColor(text, color);
+	}
+
+	public static function highlight(text:String, ?textColor:Null<Color> = Color.BLACK, ?highlightColor:Null<Color> = Color.WHITE):String {
+		return Colorizer.setHighlight(text, textColor, highlightColor);
 	}
 
 	public static function surround(text:String, ?surroundingString:String = '-'):String {

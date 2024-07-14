@@ -44,10 +44,10 @@ class Colorizer {
 		return ANSI.set(textColorMap[textColor]) + text + ANSI.set(Off);
 	}
 
-	public static function highlight(text:Null<String>, highlightColor:Null<Color>):String {
-		if (text == null || highlightColor == null) {
+	public static function setHighlight(text:Null<String>, textColor:Null<Color>, highlightColor:Null<Color>):String {
+		if (text == null || textColor == null || highlightColor == null) {
 			return "";
 		}
-		return ANSI.set(highlightColorMap[highlightColor]) + ANSI.set(Attribute.Black) + text + ANSI.set(Off);
+		return ANSI.set(highlightColorMap[highlightColor]) + ANSI.set(textColorMap[textColor]) + text + ANSI.set(Off);
 	}
 }
