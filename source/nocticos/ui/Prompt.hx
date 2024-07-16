@@ -50,9 +50,9 @@ class Prompt {
 		#end
 		switch(this._promptType) {
 			case DEFAULT:
-				new TypedText(this._promptString, DEFAULT, WHITE);
+				new TypedText(this._promptString, TextType.DEFAULT, WHITE);
 				Thread.sleepCallback(0.003, function() {
-					new TypedText(' ${Variables.PROMPT_STRING}: ', DEFAULT, WHITE);
+					new TypedText(' ${Variables.getPromptString(PromptType.DEFAULT)}: ', TextType.DEFAULT, WHITE);
 				});
 
 				var uInput:String = Sys.stdin().readLine();

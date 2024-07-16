@@ -1,5 +1,6 @@
 package nocticos;
 
+import nocticos.ui.Prompt.PromptType;
 import backend.FileStream;
 import nocticos.lib.HTTP;
 
@@ -32,14 +33,15 @@ class Variables
 	public static final GIT_VERSION:String = HTTP.getStringFromURL('https://raw.githubusercontent.com/Equinoxtic/NocticOS-Rewritten/master/.GIT_VERSION');
 
 	/**
-	 * The prompt of the command line. [ Default: '~$' ]
+	 * The map of strings of every prompt given by a type. [ Default: PromptType.DEFAULT ]
 	 */
-	public static final COMMAND_LINE_PROMPT:String = "~$";
+	private static final PROMPT_STRINGS:Map<PromptType, String> = [
+		PromptType.DEFAULT		=>		"[ Yes (Y) / No (N) ]"
+	];
 
-	/**
-	 * The string of every prompt. [ Default: [ Yes (Y) / No (N) ] ]
-	 */
-	public static final PROMPT_STRING:String = "[ Yes (Y) / No (N) ]";
+	public static function getPromptString(promptType:Null<PromptType> = PromptType.DEFAULT):String {
+		return PROMPT_STRINGS[promptType];
+	}
 
 	/**
 	 * The list of commands for NocticOS.
@@ -92,10 +94,10 @@ class Variables
 			["quit", "q"],
 			["NO_FLAGS"],
 			'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.'
-		],
+		]
 	];
 
-	public static final OUTPUT_SYMBOLS:Map<OutputSymbols, String> = [
+	private static final OUTPUT_SYMBOLS:Map<OutputSymbols, String> = [
 		INFO 	=> '+',
 		WARNING => '?',
 		ERROR 	=> '!'
