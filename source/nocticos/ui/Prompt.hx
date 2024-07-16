@@ -1,5 +1,6 @@
 package nocticos.ui;
 
+import nocticos.lib.Logging;
 import cpp.Callable;
 import nocticos.ui.display.text.TypedText;
 
@@ -45,9 +46,7 @@ class Prompt {
 	 * Initializes the current prompt.
 	 */
 	public function initializePrompt():Void {
-		#if (debug)
 		outputPromptOptions();
-		#end
 		switch(this._promptType) {
 			case DEFAULT:
 				new TypedText(this._promptString, TextType.DEFAULT, WHITE);
@@ -92,16 +91,14 @@ class Prompt {
 		);
 	}
 
-	#if (debug)
 	public function outputPromptOptions():Void {
 		switch(this._promptType) {
 			case DEFAULT:
 				for (i in 0..._answers_DEFAULT.length) {
-					Sys.print('[Prompt Option ${i+1}]: ${_answers_DEFAULT[i]}\n');
+					Logging.logMessage('[Prompt Option ${i+1}]: ${_answers_DEFAULT[i]}\n');
 				}
 		}
 	}
-	#end
 
 	private function _promptAction(promptMode:Null<PromptType>, ?action:Null<PromptAction> = PromptAction.APPEND_OPTIONS, ?list:Null<Array<Dynamic>>):Void {
 		if (promptMode != null) {
