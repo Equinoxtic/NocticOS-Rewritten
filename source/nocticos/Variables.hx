@@ -33,12 +33,35 @@ class Variables
 	public static final GIT_VERSION:String = HTTP.getStringFromURL('https://raw.githubusercontent.com/Equinoxtic/NocticOS-Rewritten/master/.GIT_VERSION');
 
 	/**
-	 * The map of strings of every prompt given by a type. [ Default: PromptType.DEFAULT ]
+	 * The map of output symbols given by a type as its key.
+	 */
+	private static final OUTPUT_SYMBOLS:Map<OutputSymbols, String> = [
+		INFO 	=> '+',
+		WARNING => '?',
+		ERROR 	=> '!'
+	];
+
+	/**
+	 * The map of strings for a specific type of prompt.
 	 */
 	private static final PROMPT_STRINGS:Map<PromptType, String> = [
 		PromptType.DEFAULT		=>		"[ Yes (Y) / No (N) ]"
 	];
 
+	/**
+	 * Returns an output symbol with the given type.
+	 * @param type The type of the output symbol.
+	 * @return String
+	 */
+	public static function getOutputSymbol(?type:Null<OutputSymbols> = INFO):String {
+		return OUTPUT_SYMBOLS[type];
+	}
+
+	/**
+	 * Returns a prompt string with the given type.
+	 * @param promptType The type of the prompt.
+	 * @return String
+	 */
 	public static function getPromptString(promptType:Null<PromptType> = PromptType.DEFAULT):String {
 		return PROMPT_STRINGS[promptType];
 	}
@@ -48,21 +71,21 @@ class Variables
 	 *
 	 * Follow the format to make a custom command:
 	 *
+	 * ```
 	 * [
+	 *    // The name of the command. Must be a string.
+	 *    "COMMAND_NAME",         String
 	 *
-	 *		// The name of the command. Must be a string.
-	 *		"COMMAND_NAME",
+	 *    // The array of aliases for the command. Type in ``["NO_ALIASES"]`` in the array for no aliases.
+	 *    [ "COMMAND_ALIASES" ],  Array (String)
 	 *
-	 *		// The array of aliases for the command. Type in ``["NO_ALIASES"]`` in the array for no aliases.
-	 *		["COMMAND_ALIASES"],
+	 *    // The array of flags for the command. Type in ``["NO_FLAGS"]`` in the array for no flags.
+	 *    [ "COMMAND_FLAGS" ],    Array (String)
 	 *
-	 *		// The array of flags for the command. Type in ``["NO_FLAGS"]`` in the array for no flags.
-	 *		["COMMAND_FLAGS"],
-	 *
-	 *		// The description of the command. Must be a string.
-	 *		"COMMAND_DESCRIPTION"
-	 *
+	 *    // The description of the command. Must be a string.
+	 *    "COMMAND_DESCRIPTION"   String
 	 * ]
+	 * ```
 	 */
 	public static final commandsList:Array<Dynamic> = [
 		[
@@ -96,16 +119,6 @@ class Variables
 			'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.'
 		]
 	];
-
-	private static final OUTPUT_SYMBOLS:Map<OutputSymbols, String> = [
-		INFO 	=> '+',
-		WARNING => '?',
-		ERROR 	=> '!'
-	];
-
-	public static function getOutputSymbol(?type:Null<OutputSymbols> = INFO):String {
-		return OUTPUT_SYMBOLS[type];
-	}
 
 	/**
 	 * Enable a more performant version of NocticOS. This will disable colors and the 'type effect'.
