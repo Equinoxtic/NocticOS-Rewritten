@@ -1,6 +1,23 @@
 package nocticos.ui;
 
 class Shell {
+	/**
+	 * Creates a new shell with the given attributes:
+	 *
+	 * ```
+	 * // List of properties.
+	 * [
+	 *    SYMBOL: String
+	 *    ID: Int
+	 *    COLOR: Color
+	 *    HAS_BACKGROUND: Boolean
+	 *    BACKGROUND_COLOR: Color
+	 * ]
+	 * ```
+	 *
+	 * @param shellAttributes
+	 * @param color
+	 */
 	public function new(shellAttributes:Null<Array<Dynamic>>, ?color:Bool = true):Void {
 		if (shellAttributes != null) {
 			for (attributeIndex in 0...shellAttributes.length) {
