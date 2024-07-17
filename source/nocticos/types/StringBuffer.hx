@@ -1,5 +1,6 @@
 package nocticos.types;
 
+import nocticos.util.ArrayUtil;
 using StringTools;
 
 enum WriteMode {
@@ -77,9 +78,7 @@ class StringBuffer {
 	 * Clears the current StringBuffer.
 	 */
 	public function clear():Void {
-		while (this._stringContent.length > 0) {
-			this._stringContent.pop();
-		}
+		ArrayUtil.clearArray(this._stringContent);
 	}
 
 	private function _contentWrite(string:Null<String>, writeMode:Null<WriteMode>):Void {
@@ -89,9 +88,7 @@ class StringBuffer {
 		if (writeMode != null) {
 			switch(writeMode) {
 				case WRITE:
-					while (this._stringContent.length > 0) {
-						this._stringContent.pop();
-					}
+					ArrayUtil.clearArray(this._stringContent);
 					this._stringContent[0] = string;
 				case APPEND:
 					this._stringContent.push(string);

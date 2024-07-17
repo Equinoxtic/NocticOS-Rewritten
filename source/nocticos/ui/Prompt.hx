@@ -1,5 +1,6 @@
 package nocticos.ui;
 
+import nocticos.util.ArrayUtil;
 import nocticos.lib.Logging;
 import cpp.Callable;
 import nocticos.ui.display.text.TypedText;
@@ -121,9 +122,7 @@ class Prompt {
 				targetList.push(pushList);
 
 			case REMOVE_OPTIONS:
-				do {
-					targetList.pop();
-				} while (targetList.length > 0);
+				ArrayUtil.clearArray(targetList);
 		}
 	}
 
