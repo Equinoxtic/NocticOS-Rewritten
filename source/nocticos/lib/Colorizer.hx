@@ -37,6 +37,12 @@ class Colorizer {
 		CYAN		=> CyanBack
 	];
 
+	/**
+	 * Sets the color of the given text by a given color.
+	 * @param text The string/text to be colored.
+	 * @param textColor The color of the text.
+	 * @return String
+	 */
 	public static function setColor(text:Null<String>, textColor:Null<Color>):String {
 		if (text == null || textColor == null) {
 			return "";
@@ -44,6 +50,13 @@ class Colorizer {
 		return ANSI.set(textColorMap[textColor]) + text + ANSI.set(Off);
 	}
 
+	/**
+	 * Highlights the given text by a given base and highlight color.
+	 * @param text The string/text to be colored.
+	 * @param textColor The color of the text.
+	 * @param highlightColor The color of the highlight.
+	 * @return String
+	 */
 	public static function setHighlight(text:Null<String>, textColor:Null<Color>, highlightColor:Null<Color>):String {
 		if (text == null || textColor == null || highlightColor == null) {
 			return "";
