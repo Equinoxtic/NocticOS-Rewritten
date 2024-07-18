@@ -1,7 +1,6 @@
 package nocticos;
 
 import nocticos.ui.Prompt.PromptType;
-import backend.FileStream;
 import nocticos.lib.HTTP;
 
 enum OutputSymbols {
