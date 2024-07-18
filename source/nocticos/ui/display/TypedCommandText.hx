@@ -50,18 +50,14 @@ class TypedCommandText extends BasicElement {
 		stringBuffer.write('* [ ${StringFormatter.color(name, Color.YELLOW)} ]', WriteMode.APPEND);
 		if (aliases != null && flags != null) {
 			if (aliases.length > 0 && aliases[0].toUpperCase() != "NO_ALIASES") {
-				var aliasesString:String = '${
-					StringFormatter.color(ArrayUtil.getStringContents(aliases, ' | '), Color.YELLOW)
-				}';
+				var aliasesString:String = StringFormatter.color(ArrayUtil.getStringContents(aliases, ' | '), Color.YELLOW);
 				stringBuffer.write('\n  : [ {0} : {1} ]'.format([
 					StringFormatter.color('Alias(es)', Color.WHITE, true),
 					aliasesString
 				]), WriteMode.APPEND);
 			}
 			if (flags.length > 0 && flags[0].toUpperCase() != "NO_FLAGS") {
-				var flagsString:String = '${StringFormatter.color(
-					ArrayUtil.getStringContents(flags, ', '), Color.CYAN)
-				}';
+				var flagsString:String = StringFormatter.color(ArrayUtil.getStringContents(flags, ', '), Color.CYAN);
 				stringBuffer.write('\n  : ( {0} : {1} )'.format([
 					StringFormatter.color('Flag(s)', Color.WHITE, true),
 					flagsString
