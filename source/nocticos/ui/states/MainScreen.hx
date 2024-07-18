@@ -19,11 +19,9 @@ class MainScreen extends Instance {
 				[
 					' ~ ',
 					Color.YELLOW,
-					true,
-					Color.CYAN
 				],
 				[
-					' $',
+					'$',
 					Color.CYAN
 				]
 			], true);
