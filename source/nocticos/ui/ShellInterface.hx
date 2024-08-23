@@ -1,6 +1,6 @@
 package nocticos.ui;
 
-class Shell {
+class ShellInterface {
 	/**
 	 * Creates a new shell with the given attributes:
 	 *

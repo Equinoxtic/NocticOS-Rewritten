@@ -10,12 +10,14 @@ using StringTools;
 class MainScreen extends Instance {
 	override function create():Void {
 		new TypedText('[ ${Variables.APPLICATION_TITLE} - v${Variables.VERSION} ]', DEFAULT, Color.BLUE);
+
 		Sys.print("\n\n");
 
 		new TypedText('> Welcome to ${Variables.GLOBAL_APPLICATION_NAME} (${Variables.VERSION}). Type in \'help -a\' to\nget started.\n\n', DEFAULT, WHITE);
 
 		do {
-			new Shell([
+			// Initialize the interface for the shell prompt.
+			new ShellInterface([
 				[
 					' ~ ',
 					Color.YELLOW,
@@ -25,6 +27,8 @@ class MainScreen extends Instance {
 					Color.CYAN
 				]
 			], true);
+
+			// Initialize Input Handler.
 			new Input(null);
 		} while (true);
 
