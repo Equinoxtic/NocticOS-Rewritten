@@ -37,17 +37,8 @@ class Help extends BaseCommand
 
 		var showAll:Bool = (flags[1] == '-a' || flags[1] == '--all');
 
-		for (i in 0...Command.commandsList.length) {
-			if (showAll) {
-				new TypedCommandText(
-					CommandUtility.getCommandData(i, CommandData.NAME),
-					CommandUtility.getCommandData(i, CommandData.DESCRIPTION),
-					CommandUtility.getCommandData(i, CommandData.ALIASES),
-					CommandUtility.getCommandData(i, CommandData.FLAGS)
-				);
-			} else {
-				new TypedCommandText(Command.commandsList[i][0], Command.commandsList[i][3], null, null);
-			}
+		for (command => properties in Command.commandsList) {
+			new TypedCommandText(properties, showAll);
 		}
 	}
 }

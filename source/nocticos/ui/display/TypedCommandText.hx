@@ -1,5 +1,6 @@
 package nocticos.ui.display;
 
+import nocticos.ui.command.Command.CommandProperties;
 import nocticos.lib.Logging;
 import nocticos.util.ArrayUtil;
 import nocticos.lib.Colorizer.Color;
@@ -12,22 +13,19 @@ using StringTools;
 using nocticos.util.StringUtil;
 
 class TypedCommandText extends BasicElement {
-	/**
-	 * Create a text for commands with the type effect.
-	 * @param name The name of the command.
-	 * @param aliases The array of aliases of the command.
-	 * @param flags The array of flags of the command.
-	 * @param description The description of the command.
-	 */
-	public function new(name:String, description:String, aliases:Array<String>, flags:Array<String>):Void {
+	public function new(commandProperties:Null<CommandProperties>, ?detailed:Bool = true):Void {
 		super();
 
-		this.pushProperty('commandName', name);
-		this.pushProperty('commandDescription', description);
-		this.pushProperty('commandAliases', aliases);
-		this.pushProperty('commandFlags', flags);
+		if (commandProperties == null) {
+			return;
+		}
 
-		if (this.getProperty('commandAliases') != null && this.getProperty('commandFlags') != null) {
+		this.pushProperty('commandName', commandProperties.name);
+		this.pushProperty('commandDescription', commandProperties.description);
+		this.pushProperty('commandAliases', commandProperties.aliases);
+		this.pushProperty('commandFlags', commandProperties.flags);
+
+		if (this.getProperty('commandAliases') != null && this.getProperty('commandFlags') != null && detailed) {
 			new TypedText(_formatCommand(
 				this.getProperty('commandName'),
 				this.getProperty('commandAliases'),
@@ -65,9 +63,11 @@ class TypedCommandText extends BasicElement {
 			}
 		}
 		stringBuffer.write('\n', WriteMode.APPEND);
+
 		if (description == "" || description.length <= 0) {
 			description = "< Command Description >";
 		}
+
 		stringBuffer.write('  {0} {1}'.format([
 			StringFormatter.color('->', Color.GREEN), '\"${description}\"'
 		]), WriteMode.APPEND);

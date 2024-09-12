@@ -1,5 +1,6 @@
 package nocticos;
 
+import nocticos.ui.command.Command.CommandProperties;
 import nocticos.ui.Prompt.PromptType;
 import nocticos.lib.HTTP;
 
@@ -86,6 +87,7 @@ class Variables
 	 * ]
 	 * ```
 	 */
+	/*
 	public static final commandsList:Array<Dynamic> = [
 		[
 			"help",
@@ -118,6 +120,25 @@ class Variables
 			'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.'
 		]
 	];
+	*/
+
+	public static final commandsList:Array<CommandProperties> = [
+		{
+			name: 'help',
+			commandClass: nocticos.commands.Help,
+			description: 'Shows the list of available commands for ${Variables.GLOBAL_APPLICATION_NAME}.',
+			flags: [ '--all', '-a' ],
+			aliases: [ 'cmds' ]
+		},
+
+		{
+			name: 'exit',
+			commandClass: nocticos.commands.Exit,
+			description: 'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.',
+			flags: [ 'NO_FLAGS' ],
+			aliases: [ 'quit', 'q' ]
+		}
+	];
 
 	/**
 	 * Enable a more performant version of NocticOS. This will disable colors and the 'type effect'.
@@ -127,7 +148,7 @@ class Variables
 	/**
 	 * Forces the type effect to have a more instantaneous speed.
 	 */
-	public static final FORCE_INSTANTANEOUS_TYPE_EFFECT:Bool = true;
+	public static final FORCE_INSTANTANEOUS_TYPE_EFFECT:Bool = false;
 
 	/**
 	 * Whether colors should be displayed on the screen.

@@ -9,14 +9,24 @@ enum CommandData {
 	DESCRIPTION;
 }
 
-class Command {
-	public static var commandsList:Array<Dynamic> = [];
+typedef CommandProperties = {
+	var name:String;
+	var commandClass:Class<BaseCommand>;
+	var description:String;
+	var flags:Array<String>;
+	var aliases:Array<String>;
+}
 
-	public static function insantiateCommand(commandInstance:BaseCommand):Void {}
+class Command {
+	public static var commandsList:Array<CommandProperties> = [];
+
+	public static function insantiateCommand(commandInstance:Class<BaseCommand>, flags:Array<String>):Void {
+		Type.createInstance(commandInstance, [flags]);
+	}
 
 	public static function getCommandsList():Void
 	{
-		for (i in 0...commandsList.length) {
+		for (i in 0 ... commandsList.length) {
 			Sys.print(commandsList[i] + '\n\n');
 		}
 	}
