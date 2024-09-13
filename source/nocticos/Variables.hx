@@ -66,62 +66,6 @@ class Variables
 		return PROMPT_STRINGS[promptType];
 	}
 
-	/**
-	 * The list of commands for NocticOS.
-	 *
-	 * Follow the format to make a custom command:
-	 *
-	 * ```
-	 * [
-	 *    // The name of the command. Must be a string.
-	 *    "COMMAND_NAME",         String
-	 *
-	 *    // The array of aliases for the command. Type in ``["NO_ALIASES"]`` in the array for no aliases.
-	 *    [ "COMMAND_ALIASES" ],  Array (String)
-	 *
-	 *    // The array of flags for the command. Type in ``["NO_FLAGS"]`` in the array for no flags.
-	 *    [ "COMMAND_FLAGS" ],    Array (String)
-	 *
-	 *    // The description of the command. Must be a string.
-	 *    "COMMAND_DESCRIPTION"   String
-	 * ]
-	 * ```
-	 */
-	/*
-	public static final commandsList:Array<Dynamic> = [
-		[
-			"help",
-			["cmds"],
-			["--all", "-a"],
-			'Shows the list of available commands for ${Variables.GLOBAL_APPLICATION_NAME}'
-		],
-		[
-			"clear",
-			["clr", "cls", "clrscr"],
-			["NO_FLAGS"],
-			"Clears the current screen buffer."
-		],
-		[
-			"reload",
-			["refresh", "rbuf", "refbuf"],
-			["NO_FLAGS"],
-			"Refreshes / reloads the buffer."
-		],
-		[
-			"logs",
-			["NO_ALIASES"],
-			["NO_FLAGS"],
-			"Opens the log file of the current session."
-		],
-		[
-			"exit",
-			["quit", "q"],
-			["NO_FLAGS"],
-			'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.'
-		]
-	];
-	*/
-
 	public static final commandsList:Array<CommandProperties> = [
 		{
 			name: 'help',
@@ -130,7 +74,27 @@ class Variables
 			flags: [ '--all', '-a' ],
 			aliases: [ 'cmds' ]
 		},
-
+		{
+			name: 'clear',
+			commandClass: nocticos.commands.ClearScreen,
+			description: 'Clears the current text on the screen.',
+			flags: [ 'NO_FLAGS' ],
+			aliases: [ 'clr', 'cls', 'clrscr' ]
+		},
+		{
+			name: 'reload',
+			commandClass: nocticos.commands.RefreshBuffer,
+			description: 'Refreshes / reloads the entire system.',
+			flags: [ 'NO_FLAGS' ],
+			aliases: [ 'refresh', 'rbuf', 'refbuf' ]
+		},
+		{
+			name: 'logs',
+			commandClass: nocticos.commands.OutputSessionLogs,
+			description: 'Opens the log file of the current session.',
+			flags: [ 'NO_FLAGS' ],
+			aliases: [ 'NO_ALIASES' ]
+		},
 		{
 			name: 'exit',
 			commandClass: nocticos.commands.Exit,
