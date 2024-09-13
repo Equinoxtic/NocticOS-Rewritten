@@ -13,6 +13,6 @@ class Logging {
 	}
 
 	public static function readLogs():Void {
-		Sys.print('${FileStream.readFile(LOG_FILE)}\n\n');
+		Sys.print('${FileStream.readFile(LOG_FILE)}\n');
 	}
 }
