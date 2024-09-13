@@ -1,12 +1,12 @@
+import nocticos.util.Thread;
+import nocticos.lib.Colorizer.Color;
+import nocticos.util.StringFormatter;
+import nocticos.lib.io.StandardOutput;
 import backend.FileStream;
 import backend.FileStream.ItemType;
-import sys.FileSystem;
 import backend.ANSI;
 import nocticos.ui.states.UpdateChecker;
-import nocticos.ui.Prompt;
-import nocticos.ui.display.text.TypedText;
 import nocticos.util.CommandUtility;
-import nocticos.util.Thread;
 import backend.System;
 import nocticos.Variables;
 import backend.Instance;
@@ -42,6 +42,20 @@ class Main {
 
 		System._CLRSCR();
 
+		// Start initialization.
+		initializationState();
+
+		System._CLRSCR();
+
+		// Instantiate the MainScreen class.
+		Instance.instantiate(targetState, true);
+	}
+
+	private static function initializationState():Void {
+		StandardOutput.println(StringFormatter.mappedSurround(
+			StringFormatter.color('Initialization Phase ...', Color.GREEN), [ '[', ']' ]
+		));
+
 		// Push and initialize commandsList.
 		for (i in 0 ... Variables.commandsList.length) {
 			CommandUtility.pushCommand(
@@ -49,10 +63,6 @@ class Main {
 			);
 		}
 
-		Thread.sleep(1.0);
-		System._CLRSCR();
-
-		// Instantiate the MainScreen class.
-		Instance.instantiate(targetState, true);
+		Thread.sleepMS(1000);
 	}
 }
