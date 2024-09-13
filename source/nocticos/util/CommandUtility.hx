@@ -23,7 +23,7 @@ class CommandUtility {
 
 		Command.commandsList.push(commandProperties);
 
-		stringBuffer.write("{0} > {1} : {2}\n    -> {3} \n\n".format([
+		stringBuffer.write("{0} > {1} : {2} -> {3}\n".format([
 			StringFormatter.mappedSurround(StringFormatter.color('PUSHED COMMAND', Color.GREEN), ['[ ', ' ]']),
 			StringFormatter.mappedSurround(
 				StringFormatter.color('Alias(es): ${ArrayUtil.getStringContents(commandProperties.aliases, ', ')}', Color.YELLOW),
