@@ -1,5 +1,6 @@
 package nocticos.ui;
 
+import nocticos.lib.StringID;
 import haxe.io.Bytes;
 import nocticos.lib.Logging;
 import nocticos.util.StringFormatter;
@@ -18,7 +19,7 @@ class ShellRenderer {
 	 */
 	public static function stage(symbol:Null<String>, id:Null<Int>, ?color:Null<Color> = WHITE):Void {
 		Logging.logMessage('Staged and Registered symbol \"{0}\" with ID: {1}'.format([
-			symbol, '00${Std.string(id)}'
+			symbol, StringID.generate(id)
 		]));
 		if (color != null) {
 			Sys.print(StringFormatter.color(symbol, color, false));

@@ -1,5 +1,6 @@
 package nocticos.util;
 
+import nocticos.lib.StringID;
 import nocticos.lib.StringFunctions;
 import nocticos.lib.Logging;
 import nocticos.types.StringBuffer;
@@ -18,7 +19,7 @@ class CommandUtility {
 		var stringBuffer:StringBuffer = new StringBuffer();
 
 		if (id != null && id > 0) {
-			stringBuffer.write('(${Std.string(id)}): ');
+			stringBuffer.write('(${StringID.generate(id)}): ');
 		}
 
 		Command.commandsList.push(commandProperties);
