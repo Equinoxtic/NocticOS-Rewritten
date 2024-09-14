@@ -7,7 +7,7 @@ using StringTools;
 class StringID {
 	private static var ASSIGNED_IDS:Array<Int> = [ 0 ];
 
-	public static function generate(id:Null<Int>):String {
+	public static function assign(id:Null<Int>):String {
 		if (id == null) {
 			return null;
 		}

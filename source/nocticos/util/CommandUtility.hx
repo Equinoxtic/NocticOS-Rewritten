@@ -19,7 +19,7 @@ class CommandUtility {
 		var stringBuffer:StringBuffer = new StringBuffer();
 
 		if (id != null && id > 0) {
-			stringBuffer.write('(${StringID.generate(id)}): ');
+			stringBuffer.write('(${StringID.assign(id)}): ');
 		}
 
 		Command.commandsList.push(commandProperties);
