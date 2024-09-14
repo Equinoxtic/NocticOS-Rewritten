@@ -1,7 +1,6 @@
 package nocticos.ui;
 
 import nocticos.lib.StringID;
-import haxe.io.Bytes;
 import nocticos.lib.Logging;
 import nocticos.util.StringFormatter;
 import nocticos.lib.Colorizer.Color;
