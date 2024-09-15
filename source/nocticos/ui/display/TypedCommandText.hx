@@ -45,7 +45,9 @@ class TypedCommandText extends BasicElement {
 
 	private function _formatCommand(name:String, aliases:Array<String>, flags:Array<String>, description:Null<String>):String {
 		var stringBuffer:StringBuffer = new StringBuffer();
+
 		stringBuffer.write('* [ ${StringFormatter.color(name, Color.YELLOW)} ]', WriteMode.APPEND);
+
 		if (aliases != null && flags != null) {
 			if (aliases.length > 0 && aliases[0].toUpperCase() != "NO_ALIASES") {
 				var aliasesString:String = StringFormatter.color(ArrayUtil.getStringContents(aliases, ' | '), Color.YELLOW);
@@ -62,6 +64,7 @@ class TypedCommandText extends BasicElement {
 				]), WriteMode.APPEND);
 			}
 		}
+
 		stringBuffer.write('\n', WriteMode.APPEND);
 
 		if (description == "" || description.length <= 0) {

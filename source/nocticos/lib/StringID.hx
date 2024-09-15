@@ -47,7 +47,12 @@ class StringID {
 		for (i in 0 ... indexes.length) {
 			buf.write(Std.string(indexes[i]));
 		}
-		return buf.read();
+
+		final rbuf = buf.read();
+		final r = rbuf;
+		buf.clear();
+
+		return r;
 	}
 
 	@:noPrivateAccess
