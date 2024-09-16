@@ -13,14 +13,11 @@ class Text extends BasicElement {
 	 */
 	public function new(text:String, textColor:Null<Color>, ?cout:Bool = false):Void {
 		super();
-
 		if (text == null || text == '') {
 			return;
 		}
-
 		this.pushProperty('content', text);
 		this.pushProperty('color', textColor);
-
 		if (cout) {
 			Sys.print(StringFormatter.color(this.getProperty('content'), this.getProperty('color')));
 		}

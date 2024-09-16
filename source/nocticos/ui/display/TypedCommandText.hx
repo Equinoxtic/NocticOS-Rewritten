@@ -15,16 +15,18 @@ using nocticos.util.StringUtil;
 class TypedCommandText extends BasicElement {
 	public function new(commandProperties:Null<CommandProperties>, ?detailed:Bool = true):Void {
 		super();
-
 		if (commandProperties == null) {
 			return;
 		}
-
-		this.pushProperty('commandName', commandProperties.name);
-		this.pushProperty('commandDescription', commandProperties.description);
-		this.pushProperty('commandAliases', commandProperties.aliases);
-		this.pushProperty('commandFlags', commandProperties.flags);
-
+		final properties:Map<String, Dynamic> = [
+			'commandName'        => commandProperties.name,
+			'commandDescription' => commandProperties.description,
+			'commandAliases'     => commandProperties.aliases,
+			'commandFlags'       => commandProperties.flags
+		];
+		for (k => v in properties) {
+			this.pushProperty(k, v);
+		}
 		if (this.getProperty('commandAliases') != null && this.getProperty('commandFlags') != null && detailed) {
 			new TypedText(_formatCommand(
 				this.getProperty('commandName'),
@@ -45,9 +47,7 @@ class TypedCommandText extends BasicElement {
 
 	private function _formatCommand(name:String, aliases:Array<String>, flags:Array<String>, description:Null<String>):String {
 		var stringBuffer:StringBuffer = new StringBuffer();
-
 		stringBuffer.write('* [ ${StringFormatter.color(name, Color.YELLOW)} ]', WriteMode.APPEND);
-
 		if (aliases != null && flags != null) {
 			if (aliases.length > 0 && aliases[0].toUpperCase() != "NO_ALIASES") {
 				var aliasesString:String = StringFormatter.color(ArrayUtil.getStringContents(aliases, ' | '), Color.YELLOW);
@@ -64,23 +64,16 @@ class TypedCommandText extends BasicElement {
 				]), WriteMode.APPEND);
 			}
 		}
-
 		stringBuffer.write('\n', WriteMode.APPEND);
-
 		if (description == "" || description.length <= 0) {
 			description = "< Command Description >";
 		}
-
 		stringBuffer.write('  {0} {1}'.format([
 			StringFormatter.color('->', Color.GREEN), '\"${description}\"'
 		]), WriteMode.APPEND);
-
 		final stringBufferRead = stringBuffer.read();
-
 		Logging.logMessage('FORMATTED COMMAND: ${stringBufferRead}');
-
 		stringBuffer.clear();
-
 		return stringBufferRead;
 	}
 }

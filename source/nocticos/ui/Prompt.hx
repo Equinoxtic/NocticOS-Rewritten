@@ -120,7 +120,6 @@ class Prompt {
 					return;
 				}
 				targetList.push(pushList);
-
 			case REMOVE_OPTIONS:
 				ArrayUtil.clearArray(targetList);
 		}
@@ -133,7 +132,6 @@ class Prompt {
 				if (_answers_DEFAULT.length <= 0) {
 					return;
 				}
-
 				if (input != null) {
 					for (i in 0..._answers_DEFAULT.length) {
 						for (j in 0..._answers_DEFAULT[i].length) {

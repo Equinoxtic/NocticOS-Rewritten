@@ -24,8 +24,7 @@ class Command {
 		Type.createInstance(commandInstance, [flags]);
 	}
 
-	public static function getCommandsList():Void
-	{
+	public static function getCommandsList():Void {
 		for (i in 0 ... commandsList.length) {
 			Sys.print(commandsList[i] + '\n\n');
 		}

@@ -15,15 +15,11 @@ class CommandUtility {
 		if (commandProperties == null) {
 			return;
 		}
-
 		var stringBuffer:StringBuffer = new StringBuffer();
-
 		if (id != null && id > 0) {
 			stringBuffer.write('(${StringID.assign(id)}): ');
 		}
-
 		Command.commandsList.push(commandProperties);
-
 		stringBuffer.write("{0} > {1} : {2} -> {3}\n".format([
 			StringFormatter.mappedSurround(StringFormatter.color('PUSHED COMMAND', Color.GREEN), ['[ ', ' ]']),
 			StringFormatter.mappedSurround(
@@ -36,29 +32,25 @@ class CommandUtility {
 			),
 			'\"${commandProperties.description}\"'
 		]));
-
 		Logging.logMessage(stringBuffer.read());
-
 		stringBuffer.out();
 		stringBuffer.clear();
-
 		return;
 	}
 
 	public static function getCommandData(?index:Int, ?commandDataType:Null<CommandData> = NAME):Dynamic {
-
 		if (!commandDataType.equals(CommandData.ALIASES) && !commandDataType.equals(CommandData.FLAGS)) {
 			if (commandDataType.equals(CommandData.DESCRIPTION)) {
-				return Command.commandsList[index].description;
+				return Command.commandsList[index].description; // Description
 			}
 		} else {
 			if (commandDataType.equals(CommandData.ALIASES)) {
-				return Command.commandsList[index].aliases;
+				return Command.commandsList[index].aliases; // Aliases
 			}
 			if (commandDataType.equals(CommandData.FLAGS)) {
-				return Command.commandsList[index].flags;
+				return Command.commandsList[index].flags; // Flags
 			}
 		}
-		return Command.commandsList[index].name;
+		return Command.commandsList[index].name; // Name
 	}
 }

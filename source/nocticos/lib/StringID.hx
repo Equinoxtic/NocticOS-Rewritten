@@ -11,10 +11,8 @@ class StringID {
 		if (id == null) {
 			return null;
 		}
-
 		var existingID:Bool = false;
 		var conflictingID:Int = 0;
-
 		for (i in 0 ... ASSIGNED_IDS.length) {
 			existingID = (id == ASSIGNED_IDS[i]);
 			conflictingID = ASSIGNED_IDS[i];
@@ -22,36 +20,30 @@ class StringID {
 				break;
 			}
 		}
-
 		if (existingID) {
 			_crashOS(id, conflictingID);
 		} else {
 			_assignID(id);
 		}
-
 		return _separateIndexes(id);
 	}
 
 	@:noPrivateAccess
 	private static function _separateIndexes(id:Int):String {
 		var indexes:Array<Int> = [];
-
 		if (id >= 1000) {
 			indexes.push(_calculate(id, 1000));
 		}
 		indexes.push(_calculate(id, 100));
 		indexes.push(_calculate(id, 10));
 		indexes.push(_calculate(id, 1));
-
 		var buf:StringBuffer = new StringBuffer();
 		for (i in 0 ... indexes.length) {
 			buf.write(Std.string(indexes[i]));
 		}
-
 		final rbuf = buf.read();
 		final r = rbuf;
 		buf.clear();
-
 		return r;
 	}
 
