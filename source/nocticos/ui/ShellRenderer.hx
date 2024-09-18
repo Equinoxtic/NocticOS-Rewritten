@@ -20,10 +20,11 @@ class ShellRenderer {
 		Logging.logMessage('Staged and Registered symbol \"{0}\" with ID: {1}'.format([
 			symbol, StringID.assign(id)
 		]));
-		if (color != null) {
-			Sys.print(StringFormatter.color(symbol, color, false));
-		} else {
-			Sys.print(symbol);
-		}
+		_renderSymbol(symbol, color);
+	}
+
+	@:noPrivateAccess
+	private static function _renderSymbol(symbol:Null<String>, ?color:Null<Color> = WHITE):Void {
+		Sys.print(StringFormatter.color(symbol, color, false));
 	}
 }

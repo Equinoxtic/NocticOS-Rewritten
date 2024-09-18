@@ -1,30 +1,21 @@
 package nocticos.ui;
 
+import nocticos.lib.Colorizer.Color;
+
+typedef ShellCharacter = {
+	var symbol:String;
+	var id:Int;
+	@:optional var color:Color;
+}
+
 class ShellInterface {
-	/**
-	 * Creates a new shell with the given attributes:
-	 *
-	 * ```
-	 * // List of properties.
-	 * [
-	 *    SYMBOL: String
-	 *    ID: Int
-	 *    COLOR: Color
-	 *    HAS_BACKGROUND: Boolean
-	 *    BACKGROUND_COLOR: Color
-	 * ]
-	 * ```
-	 *
-	 * @param shellAttributes
-	 * @param color
-	 */
-	public function new(shellAttributes:Null<Array<Dynamic>>, ?color:Bool = true):Void {
-		if (shellAttributes != null) {
-			for (attributeIndex in 0...shellAttributes.length) {
+	public function new(shellCharacters:Null<Array<ShellCharacter>>, ?color:Bool = true):Void {
+		if (shellCharacters != null) {
+			for (i in 0...shellCharacters.length) {
 				ShellRenderer.stage(
-					shellAttributes[attributeIndex][0],
-					(attributeIndex + 1),
-					((color) ? shellAttributes[attributeIndex][1] : null)
+					shellCharacters[i].symbol,
+					(i + 1),
+					((color) ? shellCharacters[i].color : null)
 				);
 			}
 			Sys.print(" ");
