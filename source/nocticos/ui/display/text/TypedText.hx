@@ -18,7 +18,6 @@ class TypedText extends Text {
 	 */
 	public function new(text:String, ?type:Null<TextType> = DEFAULT, ?textColor:Null<Color> = Color.WHITE):Void {
 		super(text, textColor, false);
-
 		if (type != null) {
 			var speed:Float = 0.0;
 			switch(type) {

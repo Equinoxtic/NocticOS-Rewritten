@@ -21,9 +21,9 @@ class BasicElement {
 		if (key == null || key.charAt(0) == '' || value == null) {
 			return;
 		}
-		#if (debug)
+		/* #if (debug)
 		StandardOutput.print('Pushed Property: $key => $value');
-		#end
+		#end */
 		_elementProperties.set(key, value);
 	}
 

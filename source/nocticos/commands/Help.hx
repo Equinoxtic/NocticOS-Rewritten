@@ -23,22 +23,20 @@ class Help extends BaseCommand
 		"Long story short, this used to be written in C#."
 	];
 
-	public function new(flags:Array<String>):Void
-	{
+	public function new(flags:Array<String>):Void {
 		super(flags);
-
 		System._CLRSCR();
-
-		var messageString:String = '\"${messagesArray[Random.int(0, messagesArray.length - 1)]}\"';
-		new TypedText('[ ${Variables.GLOBAL_APPLICATION_NAME} Help / Usage ] - $messageString\n\n', DEFAULT, YELLOW);
-
-		var text:String = "* NOTE: All commands are CASE SENSITIVE, so make sure to type them correctly!\n\n";
-		new TypedText(text, DEFAULT_FAST, RED);
-
+		_outputHelpInfo();
 		var showAll:Bool = (flags[1] == '-a' || flags[1] == '--all');
-
 		for (command => properties in Command.commandsList) {
 			new TypedCommandText(properties, showAll);
 		}
+	}
+
+	private function _outputHelpInfo():Void {
+		var messageString:String = '\"${messagesArray[Random.int(0, messagesArray.length - 1)]}\"';
+		new TypedText('[ ${Variables.GLOBAL_APPLICATION_NAME} Help / Usage ] - $messageString\n\n', DEFAULT, YELLOW);
+		var text:String = "* NOTE: All commands are CASE SENSITIVE, so make sure to type them correctly!\n\n";
+		new TypedText(text, DEFAULT_FAST, RED);
 	}
 }

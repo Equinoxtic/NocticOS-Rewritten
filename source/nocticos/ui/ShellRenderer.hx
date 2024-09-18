@@ -1,6 +1,6 @@
 package nocticos.ui;
 
-import haxe.io.Bytes;
+import nocticos.lib.StringID;
 import nocticos.lib.Logging;
 import nocticos.util.StringFormatter;
 import nocticos.lib.Colorizer.Color;
@@ -18,12 +18,13 @@ class ShellRenderer {
 	 */
 	public static function stage(symbol:Null<String>, id:Null<Int>, ?color:Null<Color> = WHITE):Void {
 		Logging.logMessage('Staged and Registered symbol \"{0}\" with ID: {1}'.format([
-			symbol, '00${Std.string(id)}'
+			symbol, StringID.assign(id)
 		]));
-		if (color != null) {
-			Sys.print(StringFormatter.color(symbol, color, false));
-		} else {
-			Sys.print(symbol);
-		}
+		_renderSymbol(symbol, color);
+	}
+
+	@:noPrivateAccess
+	private static function _renderSymbol(symbol:Null<String>, ?color:Null<Color> = WHITE):Void {
+		Sys.print(StringFormatter.color(symbol, color, false));
 	}
 }
