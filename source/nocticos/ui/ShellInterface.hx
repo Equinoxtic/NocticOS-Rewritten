@@ -2,20 +2,19 @@ package nocticos.ui;
 
 import nocticos.lib.Colorizer.Color;
 
-typedef ShellCharacter = {
-	var symbol:String;
+typedef ShellCharacterProperties = {
 	var id:Int;
-	@:optional var color:Color;
+	var color:Color;
 }
 
 class ShellInterface {
-	public function new(shellCharacters:Null<Array<ShellCharacter>>, ?color:Bool = true):Void {
+	public function new(shellCharacters:Map<String, ShellCharacterProperties>, ?color:Bool = true):Void {
 		if (shellCharacters != null) {
-			for (i in 0...shellCharacters.length) {
+			for (symbol => properties in shellCharacters) {
 				ShellRenderer.stage(
-					shellCharacters[i].symbol,
-					(i + 1),
-					((color) ? shellCharacters[i].color : null)
+					symbol,
+					(properties.id + 1),
+					((color) ? properties.color : null)
 				);
 			}
 			Sys.print(" ");
