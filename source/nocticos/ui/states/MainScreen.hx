@@ -15,14 +15,8 @@ class MainScreen extends Instance {
 		do {
 			// Initialize the interface for the shell prompt.
 			new ShellInterface([
-				[
-					' ~ ',
-					Color.YELLOW,
-				],
-				[
-					'$',
-					Color.CYAN
-				]
+				' ~ ' => { color: YELLOW, id: 999 },
+				'$'   => { color: CYAN, id: 1000 }
 			], true);
 			// Initialize Input Handler.
 			new Input(null);
