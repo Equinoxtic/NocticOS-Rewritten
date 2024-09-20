@@ -18,7 +18,7 @@ class ShellRenderer {
 	 */
 	public static function stage(symbol:Null<String>, id:Null<Int>, ?color:Null<Color> = WHITE):Void {
 		Logging.logMessage('Staged and Registered symbol \"{0}\" with ID: {1}'.format([
-			symbol, StringID.assign(id)
+			symbol, StringID.assignPool(id)
 		]));
 		_renderSymbol(symbol, color);
 	}
