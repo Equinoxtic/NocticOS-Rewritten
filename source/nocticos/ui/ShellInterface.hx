@@ -8,7 +8,7 @@ class ShellInterface {
 			for (tdata in shellCharacters) {
 				ShellRenderer.stage(
 					tdata.symbol,
-					(tdata.id + 1),
+					(tdata.id),
 					((color) ? tdata.color : null)
 				);
 			}
