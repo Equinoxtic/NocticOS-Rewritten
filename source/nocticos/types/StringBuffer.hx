@@ -15,9 +15,7 @@ class StringBuffer {
 	/**
 	 * Create a new StringBuffer.
 	 */
-	public function new():Void {
-		this._stringContent.push(""); // Push an empty string first
-	}
+	public function new():Void {}
 
 	/**
 	 * Writes to the current StringBuffer with the given write mode.
@@ -92,7 +90,6 @@ class StringBuffer {
 					this._stringContent[0] = string;
 				case APPEND:
 					this._stringContent.push(string);
-
 				case SPLIT_APPEND:
 					var split:Array<String> = string.split(',');
 					if (split != null) {

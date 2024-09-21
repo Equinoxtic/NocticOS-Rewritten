@@ -11,9 +11,7 @@ class Input {
 		} else {
 			new TypedText('[${inputDialogue}]: ');
 		}
-
 		var userInput:String = Sys.stdin().readLine();
-
 		if (userInput != null) {
 			Parser.parseCommandInput(userInput);
 		}

@@ -1,11 +1,17 @@
 package nocticos.util.debug;
 
+import backend.System;
+import nocticos.lib.Colorizer.Color;
+import nocticos.ui.display.text.Text;
 import backend.ANSI;
+
+using StringTools;
 
 enum ExceptionType {
 	NULL_EXCEPTION;
 	NO_PATH_EXISTS;
 	EMPTY_STRING;
+	ID_CONFLICT;
 }
 
 class Error {
@@ -13,32 +19,26 @@ class Error {
 		if (exceptionType == null || message.length == 0) {
 			return;
 		}
-
-		var exceptionString:String = "";
-
-		switch(exceptionType) {
-			case NULL_EXCEPTION:
-				exceptionString = "NullObjectReferenceException";
-			case NO_PATH_EXISTS:
-				exceptionString = "NoPathExistsException";
-			case EMPTY_STRING:
-				exceptionString = "EmptyStringReferenceException";
-		}
-
-		var tMessage:String = Std.string('[${exceptionString}]: \"${message}\"');
-
+		final exceptionTypes:Map<ExceptionType, String> = [
+			NULL_EXCEPTION => 'NullObjectReference',
+			NO_PATH_EXISTS => 'NoPathExists',
+			EMPTY_STRING   => 'EmptyStringReference',
+			ID_CONFLICT    => 'ConflictedIDs'
+		];
+		final exceptionReference:String = '${exceptionTypes.get(exceptionType).trim()}Reference';
+		var tMessage:String = Std.string('[$exceptionReference]: \"$message\"');
 		if (tMessage != null) {
-			if (newline) {
-				Sys.print("\n\n");
+			if (!newline) {
+				Sys.print(StringFormatter.mappedSurround(
+					StringFormatter.color(tMessage, Color.RED), ['\n\n', '\n\n']
+				));
+				return;
 			}
 
-			Sys.print(((color) ? ANSI.set(Red, Bold) : ANSI.set(Off)) + tMessage);
-
-			Sys.print(ANSI.set(Off));
-
-			if (newline) {
-				Sys.print("\n\n");
-			}
+			Sys.print(StringFormatter.color(tMessage, Color.RED));
+		}
+		if (!exceptionType.equals(ExceptionType.EMPTY_STRING)) {
+			System._EXIT(0);
 		}
 	}
 }

@@ -14,6 +14,6 @@ class Exit extends BaseCommand {
 		if (Command.commandsList != null) {
 			ArrayUtil.clearArray(Command.commandsList);
 		}
-		System._EXIT(0);
+		System._EXIT(0, true);
 	}
 }

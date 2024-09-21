@@ -1,3 +1,4 @@
+import nocticos.lib.StringID;
 import nocticos.util.Thread;
 import nocticos.lib.Colorizer.Color;
 import nocticos.util.StringFormatter;
@@ -31,11 +32,7 @@ class Main {
 		Sys.print(ANSI.title(Variables.APPLICATION_TITLE));
 
 		// Create, flush, write necessary/other resource files.
-		for (i in 0...resourceFiles.length) {
-			FileStream.newItem(resourceFiles[i][0], resourceFiles[i][1]);
-		}
-
-		FileStream.clearFile('logs/latest.txt');
+		createResources();
 
 		// Run UpdateChecker class first.
 		UpdateChecker.check();
@@ -55,14 +52,20 @@ class Main {
 		StandardOutput.println(StringFormatter.mappedSurround(
 			StringFormatter.color('Initialization Phase ...', Color.GREEN), [ '[', ']' ]
 		));
-
 		// Push and initialize commandsList.
+		@:privateAccess
 		for (i in 0 ... Variables.commandsList.length) {
 			CommandUtility.pushCommand(
 				Variables.commandsList[i], i + 1
 			);
 		}
-
 		Thread.sleepMS(1000);
+	}
+
+	private static function createResources():Void {
+		for (i in 0...resourceFiles.length) {
+			FileStream.newItem(resourceFiles[i][0], resourceFiles[i][1]);
+		}
+		FileStream.clearFile('logs/latest.txt');
 	}
 }
