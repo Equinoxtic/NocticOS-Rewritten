@@ -66,7 +66,7 @@ class Variables
 		return PROMPT_STRINGS[promptType];
 	}
 
-	public static final commandsList:Array<CommandProperties> = [
+	private static final commandsList:Array<CommandProperties> = [
 		{
 			name: 'help',
 			commandClass: nocticos.commands.Help,

@@ -53,6 +53,7 @@ class Main {
 			StringFormatter.color('Initialization Phase ...', Color.GREEN), [ '[', ']' ]
 		));
 		// Push and initialize commandsList.
+		@:privateAccess
 		for (i in 0 ... Variables.commandsList.length) {
 			CommandUtility.pushCommand(
 				Variables.commandsList[i], i + 1
