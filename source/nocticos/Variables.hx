@@ -25,7 +25,7 @@ class Variables
 	/**
 	 * The version of the application.
 	 */
-	public static final VERSION:String = "0.0.1";
+	public static final VERSION:String = "0.0.2";
 
 	/**
 	 * The GIT version of the application. (Typically on GitHub)
