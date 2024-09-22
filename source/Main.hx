@@ -48,6 +48,7 @@ class Main {
 		Instance.instantiate(targetState, true);
 	}
 
+	@:noPrivateAccess
 	private static function initializationState():Void {
 		StandardOutput.println(StringFormatter.mappedSurround(
 			StringFormatter.color('Initialization Phase ...', Color.GREEN), [ '[', ']' ]
@@ -62,6 +63,7 @@ class Main {
 		Thread.sleepMS(1000);
 	}
 
+	@:noPrivateAccess
 	private static function createResources():Void {
 		for (i in 0...resourceFiles.length) {
 			FileStream.newItem(resourceFiles[i][0], resourceFiles[i][1]);
