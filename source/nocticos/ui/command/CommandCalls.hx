@@ -4,11 +4,12 @@ import nocticos.lib.StringFunctions;
 import nocticos.ui.command.Command;
 
 class CommandCalls {
-	public static function parseCommand(baseCommand:String, flags:Array<String>):Void {
-		var currentCommand:CommandProperties = _getCurrentCommand(baseCommand);
-		if (currentCommand != null) {
-			if (StringFunctions.compare(baseCommand, currentCommand.name) || StringFunctions.compare(baseCommand, _getCurrentAliasOfCommand(baseCommand, currentCommand))) {
-				Command.insantiateCommand(currentCommand.commandClass, flags);
+	public static function parseCommand(cmd:String, flags:Array<String>):Void {
+		var cmdAttrs:CommandProperties = _getCurrentCommand(cmd);
+		if (cmdAttrs != null) {
+			final curCMD:CommandProperties = cmdAttrs;
+			if (_checkCommand(cmd, curCMD)) {
+				Command.insantiateCommand(curCMD.commandClass, flags);
 			} else {
 				Instance.instantiate(new nocticos.ui.states.InvalidCommandState());
 			}
@@ -37,5 +38,12 @@ class CommandCalls {
 			}
 		}
 		return alias;
+	}
+
+	@:noPrivateAccess
+	private static function _checkCommand(_command_s:String, _command_t:CommandProperties):Bool {
+		return (
+			StringFunctions.compare(_command_s, _command_t.name) || StringFunctions.compare(_command_s, _getCurrentAliasOfCommand(_command_s, _command_t))
+		);
 	}
 }
