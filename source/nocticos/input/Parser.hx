@@ -19,15 +19,22 @@ class Parser {
 				flags.push(split[flag]);
 			}
 		}
-		var sCmd = flags[0].trim(); // flags[0] is the main command (i.e. "> help")
+		final sCmd = flags[0].trim(); // flags[0] is the main command (i.e. "> help")
+		currentCommand = sCmd;
+		_logRunCommand(sCmd, flags);
+		flags.remove(sCmd);
+		trace(sCmd);
+		CommandCalls.parseCommand(sCmd, flags);
+	}
+
+	@:noPrivateAccess
+	public static function _logRunCommand(cmd:String, flags:Array<String>):Void {
 		if (!(flags.length - 1 <= 0)) {
 			for (flag in 0...flags.length - 1) {
-				Logging.logMessage('[Command Ran: ${sCmd}] -> Flag(s): ${flags[flag+1]}\n');
+				Logging.logMessage('[Command Ran: ${cmd}] -> Flag(s): ${flags[flag+1]}\n');
 			}
 		} else {
-			Logging.logMessage('[Command Ran: ${sCmd}]\n');
+			Logging.logMessage('[Command Ran: ${cmd}]\n');
 		}
-		currentCommand = sCmd;
-		CommandCalls.parseCommand(sCmd, flags);
 	}
 }
