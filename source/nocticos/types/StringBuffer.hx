@@ -79,6 +79,7 @@ class StringBuffer {
 		ArrayUtil.clearArray(this._stringContent);
 	}
 
+	@:noPrivateAccess
 	private function _contentWrite(string:Null<String>, writeMode:Null<WriteMode>):Void {
 		if (string == null || string.charAt(0) == '') {
 			return;
@@ -101,6 +102,7 @@ class StringBuffer {
 		}
 	}
 
+	@:noPrivateAccess
 	private function _getStringContent(sbuf:StringBuffer):String {
 		if (sbuf != null) {
 			var buf:String = "";
