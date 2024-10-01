@@ -30,13 +30,13 @@ class StringID {
 		return _separateIndexes(id);
 	}
 
-	public static function assignPool(id:Null<Int>):String {
+	public static function assignPool(id:Null<Int>, ?poolName:Null<String>):String {
 		if (id == null) {
 			return null;
 		}
 		final idString:String = Std.string(id);
 		if (!ASSIGNED_POOLS.exists(idString)) {
-			_assignIDToPool(id);
+			_assignIDToPool(id, poolName);
 		}
 		return _separateIndexes(id);
 	}
@@ -68,22 +68,32 @@ class StringID {
 	@:noPrivateAccess
 	private static function _assignID(id:Int):Int {
 		ASSIGNED_IDS.push(id);
-		_logAssignedMessage(id);
+		_logAssignedMessage(id, null);
 		return 0;
 	}
 
 	@:noPrivateAccess
-	private static function _assignIDToPool(id:Int):Int {
-		final k:String = _separateIndexes(id);
-		ASSIGNED_POOLS.set(k, []);
-		ASSIGNED_POOLS.get(k).push(id);
-		_logAssignedMessage(id);
+	private static function _assignIDToPool(id:Int, poolName:String):Int {
+		var poolName_c:String = "";
+		if (poolName == null) {
+			poolName_c = 'POOL_${_separateIndexes(id)}';
+		}
+		ASSIGNED_POOLS.set(poolName_c, []);
+		ASSIGNED_POOLS.get(poolName_c)
+			.push(id);
+		_logAssignedMessage(id, poolName);
 		return 0;
 	}
 
 	@:noPrivateAccess
-	private static function _logAssignedMessage(id:Int):Void {
-		Logging.logMessage('Assigned ID: ${Std.string(id)}');
+	private static function _logAssignedMessage(id:Int, ?pool:Null<String>):Void {
+		var buf:StringBuffer = new StringBuffer();
+		buf.write('Assigned ID: ${Std.string(id)}');
+		if (pool != null) {
+			buf.write(' @ Pool: $pool');
+		}
+		Logging.logMessage(buf.read());
+		buf.clear();
 	}
 
 	@:noPrivateAccess
