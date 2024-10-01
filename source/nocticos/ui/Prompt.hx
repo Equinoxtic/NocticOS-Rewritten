@@ -101,6 +101,7 @@ class Prompt {
 		}
 	}
 
+	@:noPrivateAccess
 	private function _promptAction(promptMode:Null<PromptType>, ?action:Null<PromptAction> = PromptAction.APPEND_OPTIONS, ?list:Null<Array<Dynamic>>):Void {
 		if (promptMode != null) {
 			switch(promptMode) {
@@ -110,6 +111,7 @@ class Prompt {
 		}
 	}
 
+	@:noPrivateAccess
 	private function _promptActionCreate(?currentAction:Null<PromptAction> = PromptAction.APPEND_OPTIONS, ?targetList:Null<Array<Dynamic>>, ?pushList:Null<Array<Dynamic>>):Void {
 		if (targetList == null) {
 			return;
@@ -125,6 +127,7 @@ class Prompt {
 		}
 	}
 
+	@:noPrivateAccess
 	private function _evaluateAnswers(input:String, ?callback:Null<Void->Void>):Void {
 		switch(this._promptType) {
 			case DEFAULT:
