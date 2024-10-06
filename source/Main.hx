@@ -1,3 +1,5 @@
+import nocticos.lib.Logging;
+import nocticos.ui.command.Command.CommandProperties;
 import nocticos.lib.StringID;
 import nocticos.util.Thread;
 import nocticos.lib.Colorizer.Color;
@@ -17,11 +19,53 @@ class Main {
 	/**
 	 * The targetted state to start with.
 	 */
-	static final targetState:MainScreen = new MainScreen();
+	private static final targetState:MainScreen = new MainScreen();
 
-	static final resourceFiles:Array<Dynamic> = [
+	private static final resourceFiles:Array<Dynamic> = [
 		['logs', 		ItemType.DIRECTORY],
 		['crash-logs',	ItemType.DIRECTORY]
+	];
+
+	private static final COMMANDS:Map<String, CommandProperties> = [
+		'help' => {
+			name: 'help',
+			commandClass: nocticos.commands.Help,
+			description: 'Shows the list of available commands for ${Variables.GLOBAL_APPLICATION_NAME}.',
+			flags: [ '--all', '-a' ],
+			aliases: [ 'cmds' ]
+		},
+
+		'clear' => {
+			name: 'clear',
+			commandClass: nocticos.commands.ClearScreen,
+			description: 'Clears the current text on the screen.',
+			flags: [ 'NO_FLAGS' ],
+			aliases: [ 'clr', 'cls', 'clrscr' ]
+		},
+
+		'reload' => {
+			name: 'reload',
+			commandClass: nocticos.commands.RefreshBuffer,
+			description: 'Refreshes / reloads the entire system.',
+			flags: [ 'NO_FLAGS' ],
+			aliases: [ 'refresh', 'rbuf', 'refbuf' ]
+		},
+
+		'logs' => {
+			name: 'logs',
+			commandClass: nocticos.commands.OutputSessionLogs,
+			description: 'Opens the log file of the current session.',
+			flags: [ 'NO_FLAGS' ],
+			aliases: [ 'NO_ALIASES' ]
+		},
+
+		'exit' => {
+			name: 'exit',
+			commandClass: nocticos.commands.Exit,
+			description: 'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.',
+			flags: [ 'NO_FLAGS' ],
+			aliases: [ 'quit', 'q' ]
+		}
 	];
 
 	/**
@@ -39,7 +83,7 @@ class Main {
 
 		System._CLRSCR();
 
-		// Start initialization.
+		// Start initialization phase.
 		initializationState();
 
 		System._CLRSCR();
@@ -49,7 +93,17 @@ class Main {
 	}
 
 	@:noPrivateAccess
+	private static function initializeCommands():Void {
+		for (k => v in COMMANDS) {
+			Logging.logMessage('Initialized Command \'$k\': $v');
+			@:privateAccess
+			Variables.commandsList.push(v);
+		}
+	}
+
+	@:noPrivateAccess
 	private static function initializationState():Void {
+		initializeCommands();
 		StandardOutput.println(StringFormatter.mappedSurround(
 			StringFormatter.color('Initialization Phase ...', Color.GREEN), [ '[', ']' ]
 		));
