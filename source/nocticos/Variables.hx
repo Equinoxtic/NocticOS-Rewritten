@@ -66,43 +66,7 @@ class Variables
 		return PROMPT_STRINGS[promptType];
 	}
 
-	private static final commandsList:Array<CommandProperties> = [
-		{
-			name: 'help',
-			commandClass: nocticos.commands.Help,
-			description: 'Shows the list of available commands for ${Variables.GLOBAL_APPLICATION_NAME}.',
-			flags: [ '--all', '-a' ],
-			aliases: [ 'cmds' ]
-		},
-		{
-			name: 'clear',
-			commandClass: nocticos.commands.ClearScreen,
-			description: 'Clears the current text on the screen.',
-			flags: [ 'NO_FLAGS' ],
-			aliases: [ 'clr', 'cls', 'clrscr' ]
-		},
-		{
-			name: 'reload',
-			commandClass: nocticos.commands.RefreshBuffer,
-			description: 'Refreshes / reloads the entire system.',
-			flags: [ 'NO_FLAGS' ],
-			aliases: [ 'refresh', 'rbuf', 'refbuf' ]
-		},
-		{
-			name: 'logs',
-			commandClass: nocticos.commands.OutputSessionLogs,
-			description: 'Opens the log file of the current session.',
-			flags: [ 'NO_FLAGS' ],
-			aliases: [ 'NO_ALIASES' ]
-		},
-		{
-			name: 'exit',
-			commandClass: nocticos.commands.Exit,
-			description: 'Exits out of ${Variables.GLOBAL_APPLICATION_NAME}.',
-			flags: [ 'NO_FLAGS' ],
-			aliases: [ 'quit', 'q' ]
-		}
-	];
+	private static final commandsList:Array<CommandProperties> = [];
 
 	/**
 	 * Enable a more performant version of NocticOS. This will disable colors and the 'type effect'.
