@@ -23,7 +23,6 @@ class Parser {
 		currentCommand = sCmd;
 		_logRunCommand(sCmd, flags);
 		flags.remove(sCmd);
-		trace(sCmd);
 		CommandCalls.parseCommand(sCmd, flags);
 	}
 
