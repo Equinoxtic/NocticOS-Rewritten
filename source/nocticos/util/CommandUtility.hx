@@ -11,7 +11,7 @@ import nocticos.ui.command.Command;
 using nocticos.util.StringUtil;
 
 class CommandUtility {
-	public static function pushCommand(commandProperties:Null<CommandProperties>, ?id:Null<Int> = null):Void {
+	public static function mapCommand(commandProperties:Null<CommandProperties>, ?id:Null<Int> = null):Void {
 		if (commandProperties == null) {
 			return;
 		}
