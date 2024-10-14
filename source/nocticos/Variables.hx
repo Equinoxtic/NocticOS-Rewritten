@@ -66,8 +66,6 @@ class Variables
 		return PROMPT_STRINGS[promptType];
 	}
 
-	private static final commandsList:Array<CommandProperties> = [];
-
 	/**
 	 * Enable a more performant version of NocticOS. This will disable colors and the 'type effect'.
 	 */

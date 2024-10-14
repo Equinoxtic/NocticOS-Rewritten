@@ -93,26 +93,17 @@ class Main {
 	}
 
 	@:noPrivateAccess
-	private static function initializeCommands():Void {
-		for (k => v in COMMANDS) {
-			Logging.logMessage('Initialized Command \'$k\': $v');
-			@:privateAccess
-			Variables.commandsList.push(v);
-		}
-	}
-
-	@:noPrivateAccess
 	private static function initializationState():Void {
-		initializeCommands();
 		StandardOutput.println(StringFormatter.mappedSurround(
 			StringFormatter.color('Initialization Phase ...', Color.GREEN), [ '[', ']' ]
 		));
 		// Push and initialize commandsList.
 		@:privateAccess
-		for (i in 0 ... Variables.commandsList.length) {
-			CommandUtility.pushCommand(
-				Variables.commandsList[i], i + 1
-			);
+		var index:Int = 0;
+		for (k => v in COMMANDS) {
+			index += 1;
+			CommandUtility.mapCommand(v, index + 1);
+			Logging.logMessage('Initialized Command \'$k\': $v');
 		}
 		Thread.sleepMS(1000);
 	}
