@@ -14,9 +14,10 @@ class MainScreen extends Instance {
 		new TypedText('> Welcome to ${Variables.GLOBAL_APPLICATION_NAME} (${Variables.VERSION}). Type in \'help -a\' to\nget started.\n\n', DEFAULT, WHITE);
 		do {
 			// Initialize the interface for the shell prompt.
+			final GLOBAL_SHELL_ID:Int = 1;
 			new ShellInterface([
-				{ symbol: ' ~ ', color: CYAN,     id: 1 },
-				{ symbol: '$',   color: YELLOW,   id: 1 }
+				{ symbol: ' ~ ', color: CYAN,     id: GLOBAL_SHELL_ID },
+				{ symbol: '$',   color: YELLOW,   id: GLOBAL_SHELL_ID }
 			], true);
 			// Initialize Input Handler.
 			new Input(null);
