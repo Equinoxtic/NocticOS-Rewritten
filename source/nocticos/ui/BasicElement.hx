@@ -3,9 +3,10 @@ package nocticos.ui;
 #if (debug)
 import nocticos.lib.io.StandardOutput;
 #end
+import nocticos.lib.StringFunctions;
 
 class BasicElement {
-	private var _elementProperties:Map<String, Dynamic> = [];
+	private var m_Properties:Map<String, Dynamic> = [];
 
 	/**
 	 * Creates a basis of an element.
@@ -18,10 +19,10 @@ class BasicElement {
 	 * @param value The value of the property.
 	 */
 	public function pushProperty(key:String, value:Dynamic):Void {
-		if (key == null || key.charAt(0) == '' || value == null) {
+		if (StringFunctions.isNullOrEmpty(key) || value == null) {
 			return;
 		}
-		_elementProperties.set(key, value);
+		m_Properties.set(key, value);
 	}
 
 	/**
@@ -30,9 +31,9 @@ class BasicElement {
 	 * @return Dynamic
 	 */
 	public function getProperty(key:String):Dynamic {
-		if (key == null || key.charAt(0) == '') {
+		if (StringFunctions.isNullOrEmpty(key)) {
 			return null;
 		}
-		return _elementProperties[key];
+		return m_Properties[key];
 	}
 }
