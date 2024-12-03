@@ -25,6 +25,9 @@ class Help extends BaseCommand
 
 	public function new(flags:Array<String>):Void {
 		super(flags);
+		if (flags.length <= 0 || flags.length == null) {
+			return;
+		}
 		System._CLRSCR();
 		_outputHelpInfo();
 		var showAll:Bool = (flags[1] == '-a' || flags[1] == '--all');
