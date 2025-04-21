@@ -25,12 +25,14 @@ class Help extends BaseCommand
 
 	public function new(flags:Array<String>):Void {
 		super(flags);
+		/* Actually fucked the command up LOL
 		if (flags.length <= 0 || flags.length == null) {
 			return;
 		}
+		*/
 		System._CLRSCR();
 		_outputHelpInfo();
-		var showAll:Bool = (flags[1] == '-a' || flags[1] == '--all');
+		var showAll:Bool = (flags[0] == '-a' || flags[0] == '--all');
 		for (command => properties in Command.commandsList) {
 			new TypedCommandText(properties, showAll);
 		}
