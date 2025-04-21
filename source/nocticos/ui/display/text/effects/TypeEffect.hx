@@ -13,8 +13,6 @@ class TypeEffect {
 			Sys.print(sbuf.charAt(i));
 			if (!Variables.FORCE_INSTANTANEOUS_TYPE_EFFECT && !Variables.PERFORMANT_MODE) {
 				Thread.sleep(delay);
-			} else {
-				Thread.sleep(0.0);
 			}
 			if (i >= sbuf.length) {
 				if (newline) {
